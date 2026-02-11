@@ -8,7 +8,6 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 export default function SignUpPage() {
   return (
     <div className={`min-h-screen flex ${poppins.className}`}>
-      {/* Left Form Section */}
       <div className="w-full md:w-1/2 flex items-start justify-center p-10">
         <div>
           <h1 className="text-4xl font-extrabold text-purple-900 mb-8">
@@ -55,7 +54,7 @@ export default function SignUpPage() {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-900 to-purple-700 text-white font-semibold py-3 rounded-full shadow-md hover:shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-in-out cursor-pointer">
+              className="w-full bg-linear-to-r from-purple-900 to-purple-700 text-white font-semibold py-3 rounded-full shadow-md hover:shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-in-out cursor-pointer">
               Sign Up
             </button>
             <p className="text-center text-sm text-gray-600 mt-0">
