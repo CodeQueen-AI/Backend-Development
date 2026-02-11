@@ -1,66 +1,10 @@
-
 "use client";
-import { useState } from "react";
 import { Poppins } from "next/font/google";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import Image from "next/image";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export default function SignUpPage() {
-  const [userType, setUserType] = useState<"student" | "tutor">("tutor");
-
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [dob, setDob] = useState(""); // Date of Birth
-  const [phone, setPhone] = useState(""); // Phone number (Tutor only)
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validation
-    if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !password ||
-      !confirmPassword ||
-      !dob ||
-      (userType === "tutor" && !phone)
-    ) {
-      setErrorMessage("Please fill all required fields");
-      setSuccessMessage("");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      setSuccessMessage("");
-      return;
-    }
-
-    // Clear form fields
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-    setDob("");
-    setPhone("");
-    setErrorMessage("");
-
-    setSuccessMessage("Account Created Successfully!");
-    setTimeout(() => setSuccessMessage(""), 10000);
-  };
-
   return (
     <div className={`min-h-screen flex bg-white ${poppins.className}`}>
       {/* Left Form Section */}
@@ -70,7 +14,7 @@ export default function SignUpPage() {
             Create Your Account
           </h1>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6">
             {/* First Name & Last Name side-by-side */}
             <div className="flex gap-4">
               <div className="w-1/2">
@@ -79,8 +23,17 @@ export default function SignUpPage() {
                 </label>
                 <input
                   type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First Name"
+                  className="w-full border-b border-gray-300 p-1 focus:outline-none focus:border-blue-950"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-xs font-medium text-gray-500 tracking-wide uppercase mb-1">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Last Name"
                   className="w-full border-b border-gray-300 p-1 focus:outline-none focus:border-blue-950"
                 />
               </div>
@@ -93,8 +46,7 @@ export default function SignUpPage() {
               </label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
                 className="w-full border-b border-gray-300 p-1 focus:outline-none focus:border-blue-950"
               />
             </div>
@@ -105,16 +57,12 @@ export default function SignUpPage() {
                 Password
               </label>
               <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                placeholder="Password"
                 className="w-full border-b border-gray-300 p-1 focus:outline-none focus:border-blue-950"
               />
-              <span
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2 top-6 cursor-pointer text-gray-500"
-              >
-                {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              <span className="absolute right-2 top-6 cursor-pointer text-gray-500">
+                <AiOutlineEye size={20} />
               </span>
             </div>
 
@@ -124,24 +72,14 @@ export default function SignUpPage() {
                 Confirm Password
               </label>
               <input
-                type={showConfirmPassword ? "text" : "password"}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                type="password"
+                placeholder="Confirm Password"
                 className="w-full border-b border-gray-300 p-1 focus:outline-none focus:border-blue-950"
               />
-              <span
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-2 top-6 cursor-pointer text-gray-500"
-              >
-                {showConfirmPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              <span className="absolute right-2 top-6 cursor-pointer text-gray-500">
+                <AiOutlineEye size={20} />
               </span>
             </div>
-
-
-
-            {/* Error Message */}
-            {errorMessage && <p className="text-red-500 text-sm mt-1">{errorMessage}</p>}
-
 
             {/* Sign Up Button */}
             <button
@@ -150,11 +88,6 @@ export default function SignUpPage() {
             >
               Sign Up
             </button>
-
-            {/* Success Message */}
-            {successMessage && (
-              <p className="text-blue-950 font-serif text-center text-lg mt-4">{successMessage}</p>
-            )}
 
             {/* Already have an account */}
             <p className="text-center text-sm text-gray-600 mt-0">
@@ -166,15 +99,6 @@ export default function SignUpPage() {
           </form>
         </div>
       </div>
-
-      {/* Right Image Section */}
-      {/* <div className="w-1/2 hidden md:flex justify-center items-center">
-        <Image
-          src="/Signup.png"
-          alt="Sign up illustration"
-          className="object-contain h-full"
-        />
-      </div> */}
     </div>
   );
 }
