@@ -1,25 +1,18 @@
-
 "use client";
-import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image"; 
+import Image from "next/image";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export default function LoginPage() {
-  const [showOTP, setShowOTP] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [otp, setOtp] = useState("");
-
   return (
     <div className={`min-h-screen flex bg-white ${poppins.className}`}>
       {/* Left Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-8">
         <div className="bg-white w-full max-w-md">
           {/* Heading */}
-          <h1 className="text-4xl font-extrabold text-center mb-8 text-blue-950">
+          <h1 className="text-4xl font-extrabold text-center mb-8 text-purple-900">
             User Login
           </h1>
 
@@ -31,76 +24,44 @@ export default function LoginPage() {
               </label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-blue-950"
+                className="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-purple-900"
               />
             </div>
 
             {/* Password */}
-            {!showOTP && (
-              <div>
-                <label className="block text-xs font-medium text-gray-500 tracking-wide uppercase mb-1">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-blue-950"
-                />
-              </div>
-            )}
+            <div>
+              <label className="block text-xs font-medium text-gray-500 tracking-wide uppercase mb-1">
+                Password
+              </label>
+              <input
+                type="password"
+                className="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-purple-900"
+              />
+            </div>
 
-            {/* OTP Verification */}
-            {showOTP && (
-              <div>
-                <label className="block text-xs font-medium text-gray-500 tracking-wide uppercase mb-1">
-                  OTP
-                </label>
-                <input
-                  type="text"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  className="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-blue-950"
-                  placeholder="Enter OTP"
-                />
-              </div>
-            )}
-
-            {/* Forgot Password / OTP Toggle */}
+            {/* Forgot Password */}
             <div className="flex justify-between items-center text-sm mt-1">
-              {!showOTP ? (
-                <Link
-                  href="/forgot"
-                  className="text-blue-950 font-medium hover:underline"
-                >
-                  Forgot Password?
-                </Link>
-              ) : (
-                <button
-                  type="button"
-                  className="text-blue-950 font-medium hover:underline"
-                  onClick={() => setShowOTP(false)}
-                >
-                  Back to Password
-                </button>
-              )}
+              <Link
+                href="/forgot"
+                className="text-purple-900 font-medium hover:underline"
+              >
+                Forgot Password?
+              </Link>
             </div>
 
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-950 to-blue-700 text-white font-semibold py-3 rounded-full shadow-md hover:shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-in-out mt-4 cursor-pointer"
+              className="w-full bg-gradient-to-r from-purple-900 to-purple-700 text-white font-semibold py-3 rounded-full shadow-md hover:shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-in-out mt-4 cursor-pointer"
             >
-              {showOTP ? "Verify OTP" : "Login"}
+              Login
             </button>
           </form>
 
           {/* Signup Link */}
           <p className="text-center text-sm text-gray-600 mt-4">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-blue-950 font-medium">
+            <Link href="/signup" className="text-purple-900 font-medium">
               Sign Up
             </Link>
           </p>
@@ -111,7 +72,7 @@ export default function LoginPage() {
       <div className="w-1/2 hidden md:block">
         <Image
           src="/login.avif"
-          alt="Sign up illustration"
+          alt="Login illustration"
           className="h-full object-cover"
           width={800}
           height={800}
