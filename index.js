@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 
-fs.writeFile("hey.txt", 'hey hello kese ho', function(err){
+fs.writeFile("index.txt", 'Hello! How are you? ', function(err){
     if(err) console.error(err);
     else console.log("done")
 })
