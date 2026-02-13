@@ -8,6 +8,6 @@ let arr = [1,2,3,4];
 
 // Map
 var newarr = arr.map(function(val){
-    return 13;
+    return val*3
 })
 console.log(newarr)
