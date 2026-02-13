@@ -18,3 +18,8 @@ fs.rename("index.txt", 'hello.txt', function(err){
     else console.log("done")
 })
 
+// Copy File
+fs.copyFile("hello.txt" , "./copy/copy.txt", function(err){
+    if(err) console.error(err);
+    else console.log('Done')
+})
