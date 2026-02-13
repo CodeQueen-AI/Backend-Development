@@ -1,5 +1,5 @@
-// Array
-let arr = [1,2,3,4];
+// 1-Array
+// let arr = [1,2,3,4];
 
 // forEach
 // arr.forEach(function(val){
@@ -26,4 +26,16 @@ let arr = [1,2,3,4];
 // console.log(ans)
 
 // indexOf
-console.log(arr.indexOf(3));  
+// console.log(arr.indexOf(3));  
+
+// 2-Objects
+var obj = {
+    name : 'CodeQueen',
+    age = 17
+}
+// Access the value of objects
+obj.name
+obj.[name]
+
+// change the value
+obj.age = 25
