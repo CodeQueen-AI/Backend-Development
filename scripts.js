@@ -42,15 +42,20 @@
 // obj.age = 25;              
 // console.log(obj.age);      
 
-// // Freeze the object value
+// Freeze the object value
 // Object.freeze(obj);
 
 // Seal the object value
 // Object.seal(obj);
 
 // 3-Functions
-function add(a, b, c){
-    return a + b + c
-}
-consolelog(add.length)
+// function add(a, b, c){
+//     return a + b + c
+// }
+// consolelog(add.length)
 
+// return function
+function abcd(){
+    return "Hello Wrold!";
+}
+var ans = abcd()
