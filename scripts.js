@@ -60,6 +60,11 @@ function greet(name) {   // parameter
 }
 greet("CodeQueen");      // argument
 
+// Return Value
+function abcd(){
+    return "Hello Wrold!";
+}
+var ans = abcd()
 
 function add(a, b, c){
     return a + b + c
@@ -67,10 +72,7 @@ function add(a, b, c){
 consolelog(add.length)
 
 // return function
-function abcd(){
-    return "Hello Wrold!";
-}
-var ans = abcd()
+
 
 // 4-Asynchronous Javascript Coding
 var blob =  await fetch(`https://randomuser.me/api/`);
