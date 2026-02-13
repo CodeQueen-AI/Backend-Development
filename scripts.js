@@ -13,7 +13,15 @@ let arr = [1,2,3,4];
 // console.log(newarr)
 
 // filter
-arr.filter(function(val){
-    if(val > 2) {return true}
-    else return false;
-})
+// arr.filter(function(val){
+//     if(val > 2) {return true}
+//     else return false;
+// })
+
+// find
+// var ans = arr.find(function(val){
+//     if(val === 2) return val;
+// })
+
+// console.log(ans)
+
