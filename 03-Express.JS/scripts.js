@@ -8,6 +8,7 @@ app.get('/' , (req, res) => {
 app.listen(3000)
 
 // Routes - About Routes
-app.get('/about' , (req , res) => {
+app.get('/profile' , (req , res) => {
     res.send('Hello World from About Page!!')
 })
+app.listen(3000)
