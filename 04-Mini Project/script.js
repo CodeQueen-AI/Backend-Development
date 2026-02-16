@@ -9,9 +9,13 @@ app.get("/", (req, res) => {
     res.send('Mini Project');
 });
 
-app.get("/profile/codequeen", (req, res) => {
-    res.send('CodeQueen Profile');
-});
+// app.get("/profile/codequeen", (req, res) => {
+//     res.send('CodeQueen Profile');
+// });
 
+// dynamic route
+app.get("/profile/:name", (req, res) => {
+    res.send('Profile');
+});
 app.listen(3000)
 
