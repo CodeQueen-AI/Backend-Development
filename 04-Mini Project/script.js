@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 
 // dynamic route
 app.get("/profile/:name", (req, res) => {
+    req.params.username
     res.send('Profile');
 });
 app.listen(3000)
