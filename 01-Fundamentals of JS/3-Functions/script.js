@@ -41,4 +41,4 @@ const greet = () => {
 function add(a, b, c){
     return a + b + c
 }
-consolelog(add.length)
+console.log(add.length)
