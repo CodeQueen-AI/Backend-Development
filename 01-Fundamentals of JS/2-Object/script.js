@@ -1,4 +1,4 @@
-// 2-Objects
+// Objects
 var obj = {
     name : 'CodeQueen',
     age : 17
