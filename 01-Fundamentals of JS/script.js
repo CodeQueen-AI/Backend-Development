@@ -1,29 +1,3 @@
-
-
-
-
-
-
-
-// Return Value
-function abcd(){
-    return "Hello Wrold!";
-}
-var ans = abcd()
-
-// Arrow Function
-const greet = () => {
-    console.log("Hello");
-};
-
-greet();
- 
-// Function Length
-function add(a, b, c){
-    return a + b + c
-}
-consolelog(add.length)
-
 // 4-Asynchronous Javascript Coding
 async function abcd(){
     var blob = await fetch(`https://randomuser.me/api/`);
