@@ -16,6 +16,10 @@ console.log(obj.age);
 obj.city = "Lahore";
 console.log(obj.city);
 
+// Delete property
+delete obj.city;
+console.log(obj.city); 
+
 // Freeze the object value
 Object.freeze(obj);
 
