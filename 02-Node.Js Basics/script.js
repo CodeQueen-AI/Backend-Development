@@ -48,3 +48,4 @@ const server = https.createServer(options, function(req, res) {
     res.writeHead(200)  //Stats 200 OK
     res.end('Hello Secure World!') // Response to client
 });
+server.listen(3000);
