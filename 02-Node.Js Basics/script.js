@@ -39,5 +39,6 @@ const fs = require('fs')
 
 // SSL options
 const options = {
-    key :fs.readFileSync('key.pem')
+    key : fs.readFileSync('key.pem'),
+    cert : fs.readFileSync('cert.pem')
 }
