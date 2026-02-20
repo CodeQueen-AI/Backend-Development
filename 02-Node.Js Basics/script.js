@@ -1,4 +1,4 @@
-// 1-File System
+// 1-File System (fs)
 const fs = require('node:fs');
 
 // Write
