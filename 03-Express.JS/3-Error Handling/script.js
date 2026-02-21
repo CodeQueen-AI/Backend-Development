@@ -1,8 +1,6 @@
 import express from 'express';
 const app = express()
 
-
-
 // Error Handling
 app.get('/error', (req, res, next) => {
     next(new Error("Simple Error"));
@@ -15,7 +13,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3000)
-
-// Cookies
-app.use(express.json())
-app.use(express.urlencoded({extended : true}))
