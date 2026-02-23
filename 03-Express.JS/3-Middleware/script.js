@@ -10,4 +10,16 @@ app.use((req, res, next) => {
     next(); 
 });
 
+// Custom Middleware (Auth Check)
+function checkAuth(req, res, next) {
+    const token = req.query.token;
+
+    if (token === "12345") {
+        console.log("User Authenticated");
+        next();
+    } else {
+        res.send("Unauthorized Access");
+    }
+}
+
 app.listen(3000)
