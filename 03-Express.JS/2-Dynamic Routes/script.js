@@ -15,7 +15,7 @@ app.get("/profile/:name", (req, res) => {
 app.get("/profile/:name/:age", (req, res) => {
     const userName = req.params.name;
     const userAge = req.params.age;
-    res.send(`Welcome ${userName}, your age is ${userAge}`);
+    res.send(`Welcome ${userName}, Your Age is ${userAge}`);
 });
 
 app.listen(3000)
