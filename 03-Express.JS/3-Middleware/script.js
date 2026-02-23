@@ -3,6 +3,7 @@ const app = express()
 
 // Built in Middleware (Body Parser)
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Global Middleware
 app.use((req, res, next) => {
