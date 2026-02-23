@@ -11,6 +11,11 @@ app.use((req, res, next) => {
     next(); 
 });
 
+// Route with Middleware
+app.get("/dashboard", checkAuth, (req, res) => {
+    res.send("Welcome to Dashboard");
+});
+
 // Custom Middleware (Auth Check)
 function checkAuth(req, res, next) {
     const token = req.query.token;
@@ -22,9 +27,11 @@ function checkAuth(req, res, next) {
     }
 }
 
-// Route with Middleware
-app.get("/dashboard", checkAuth, (req, res) => {
-    res.send("Welcome to Dashboard");
+// Error Handling Middleware
+// 1-Route that throws error
+app.get("/error", (req, res, next) => {
+    const error = new Error("This is a custom error!");
+    next(error); 
 });
 
 // Frontend → Backend Data Flow (POST)
