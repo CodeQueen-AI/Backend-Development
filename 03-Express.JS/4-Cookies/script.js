@@ -13,4 +13,8 @@ app.get('/set', (req, res) => {
     res.send("Cookie Set");
 });
 
+app.get('/get', (req, res) => {
+    res.send(req.cookies.username);
+});
+
 app.listen(3000)
