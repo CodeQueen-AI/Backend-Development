@@ -8,4 +8,9 @@ app.get('/', (req, res) => {
     res.send("Home Page");
 });
 
+app.get('/set', (req, res) => {
+    res.cookie("username", "CodeQueen");
+    res.send("Cookie Set");
+});
+
 app.listen(3000)
