@@ -34,6 +34,18 @@ app.get("/error", (req, res, next) => {
     next(error); 
 });
 
+// 2-Error Handling Middleware
+app.use((err, req, res, next) => {
+    console.log("Error:", err.message);
+
+    res.status(500).json({
+        success: false,
+        message: "Something went wrong!",
+        error: err.message
+    });
+});
+
+
 // Frontend → Backend Data Flow (POST)
 app.post("/submit", (req, res) => {
     console.log("Data received from frontend:", req.body);
