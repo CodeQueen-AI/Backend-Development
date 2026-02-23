@@ -17,4 +17,9 @@ app.get('/get', (req, res) => {
     res.send(req.cookies.username);
 });
 
+app.get('/delete', (req, res) => {
+    res.clearCookie("username");
+    res.send("Cookie Deleted");
+});
+
 app.listen(3000)
