@@ -11,5 +11,12 @@ app.get("/profile/:name", (req, res) => {
     res.send(`Welcome, ${userName}`);
 });
 
+// Dynamic Route (Name + Age)
+app.get("/profile/:name/:age", (req, res) => {
+    const userName = req.params.name;
+    const userAge = req.params.age;
+    res.send(`Welcome ${userName}, your age is ${userAge}`);
+});
+
 app.listen(3000)
 
