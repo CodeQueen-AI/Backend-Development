@@ -20,5 +20,26 @@ app.get('/users', (req, res) => {
     res.json(users);
 });
 
+// 3-Update -> Update user by index
+app.put('/users/:index', (req, res) => {
+    const index = req.params.index;
+    users[index] = req.body;
+
+    res.json({
+        message: "User Updated Successfully",
+        users
+    });
+});
+
+// 4-Delete -> Delete user by Index
+app.delete('/users/:index', (req, res) => {
+    const index = req.params.index;
+    users.splice(index, 1);
+
+    res.json({
+        message: "User Deleted Successfully",
+        users
+    });
+});
 
 app.listen(3000)
