@@ -2,15 +2,19 @@
   "name": "04-mongo-db",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "script.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon script.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
