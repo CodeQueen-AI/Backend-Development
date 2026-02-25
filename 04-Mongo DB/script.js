@@ -5,6 +5,7 @@ const app = express();
 
 app.get('/', (req, res) => res.send('Hey!'));
 
+// Users Create
 app.get('/create', async (req, res) => {
     const createuser = await userModel.create({
         name: 'codequeen',
@@ -12,6 +13,12 @@ app.get('/create', async (req, res) => {
         email: 'codeq209@gmail.com'
     });
     res.send(createuser);
+});
+
+// Users Update
+app.get('/update', async (req, res) => {
+    let updateduser = await userModel.findOneUpdate({username : 'codequeen'} , {name: 'CodeQueen 23'} , {new: true});
+    res.send(updateduser)
 });
 
 app.listen(3000)
