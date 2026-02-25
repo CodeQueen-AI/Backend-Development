@@ -1,5 +1,5 @@
 import express from 'express';
-import userModel from './userModels.js'; // notice .js
+import userModel from './userModels.js'; 
 
 const app = express();
 
