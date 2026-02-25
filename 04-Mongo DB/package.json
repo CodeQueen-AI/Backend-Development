@@ -1,15 +1,11 @@
 {
   "name": "04-mongo-db",
   "version": "1.0.0",
-  "description": "",
   "main": "script.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon script.js"
+    "start": "node script.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^5.2.1",
     "mongoose": "^9.2.2"
