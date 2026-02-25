@@ -27,4 +27,10 @@ app.get('/read', async (req, res) => {
     res.send(users)
 });
 
+// Users Delete
+app.get('/delete', async (req, res) => {
+    let users = await userModel.findOneAndDelete()
+    res.send(users)
+});
+
 app.listen(3000)
