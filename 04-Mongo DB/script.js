@@ -21,4 +21,10 @@ app.get('/update', async (req, res) => {
     res.send(updateduser)
 });
 
+// Users Read
+app.get('/read', async (req, res) => {
+    let users = await userModel.find({username: "codequeen"})
+    res.send(users)
+});
+
 app.listen(3000)
