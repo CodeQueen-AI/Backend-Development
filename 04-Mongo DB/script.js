@@ -14,5 +14,6 @@ app.get('create' , (req, res) => {
         username : 'codequeen',
         email : 'codeq209@gmail.com'
     })
+    console.log("Hey!")
 })
 app.listen(3000)
