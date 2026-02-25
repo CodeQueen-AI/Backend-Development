@@ -8,12 +8,12 @@ app.get('/' , (req, res) => {
 })
 
 // Create User
-app.get('create' , (req, res) => {
-    userModel.create({ //Asynchronous Operations
+app.get('create' , async (req, res) => {
+    let createuser = await userModel.create({ //Asynchronous Operations
         name : 'codequeen',
         username : 'codequeen',
         email : 'codeq209@gmail.com'
     })
-    console.log("Hey!")
+    res.send(createuser)
 })
 app.listen(3000)
