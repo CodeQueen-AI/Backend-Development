@@ -23,7 +23,7 @@ app.get('/update', async (req, res) => {
 
 // Users Read
 app.get('/read', async (req, res) => {
-    let users = await userModel.find({username: "codequeen"})
+    let users = await userModel.find()
     res.send(users)
 });
 
