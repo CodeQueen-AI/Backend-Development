@@ -32,7 +32,7 @@ export default function ReadUsersPage() {
     <div className="min-h-screen p-10">
 
       {/* Heading */}
-      <h1 className="text-5xl font-bold text-center mb-12">
+      <h1 className="text-5xl font-semibold text-center mb-12">
         Read Users
       </h1>
 
@@ -42,7 +42,7 @@ export default function ReadUsersPage() {
         {users.map((user) => (
           <div
             key={user.id}
-            className="border rounded-xl p-5 text-center shadow-sm hover:shadow-md transition"
+            className="border p-5 text-center shadow-sm hover:shadow-md transition"
           >
 
             {/* Image */}
@@ -72,7 +72,6 @@ export default function ReadUsersPage() {
                   border-2
                   border-[#FF3E9B]
                   text-[#FF3E9B]
-                  rounded-lg
                   cursor-pointer
                   hover:bg-[#FF3E9B]
                   hover:text-white
@@ -89,7 +88,6 @@ export default function ReadUsersPage() {
                   border-2
                   border-red-500
                   text-red-500
-                  rounded-lg
                   cursor-pointer
                   hover:bg-red-500
                   hover:text-white
