@@ -34,7 +34,7 @@ export default function ReadUsersPage() {
     <div className="min-h-screen p-10">
       <div className="mb-6">
         <Link
-          href="/create-user" className="inline-flex items-center gap-2 text-[#FF3E9B] font-medium hover:underline
+          href="/" className="inline-flex items-center gap-2 text-[#FF3E9B] font-medium hover:underline
             transition cursor-pointer">
           <FaArrowLeft />
           Back To Home
@@ -42,7 +42,7 @@ export default function ReadUsersPage() {
       </div>
 
       {/* Heading */}
-      <h1 className="text-5xl font-semibold text-center mb-12">
+      <h1 className="text-5xl font-semibold text-center mb-12 text-[#FB2576]">
         Read Users
       </h1>
 
