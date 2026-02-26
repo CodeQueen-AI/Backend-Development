@@ -1,5 +1,5 @@
 import express from 'express';
-import userModel from './models/user'; 
+import userModel from './models/user.js'; 
 
 const app = express();
 
@@ -22,4 +22,4 @@ app.post('/create' , async (req , res) => {
     res.send((createdUser))
 })
 
-app.listen(3000)
+app.listen(5000)
