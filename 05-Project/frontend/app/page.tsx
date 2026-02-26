@@ -2,7 +2,7 @@ export default function CreateUserPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="p-8 w-full max-w-md">
-        <h1 className="text-5xl font-bold text-center mb-10">
+        <h1 className="text-5xl font-semibold text-center mb-10">
           Create Users
         </h1>
         <form className="flex flex-col gap-8">
