@@ -155,6 +155,28 @@ app.delete("/delete/:id", async (req, res) => {
   }
 });
 
+app.put("/update/:id", async (req, res) => {
+  try {
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    res.json({
+      success: true,
+      user: updatedUser
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
 // START SERVER
 app.listen(5000, () => {
   console.log("Server running on port 5000");
