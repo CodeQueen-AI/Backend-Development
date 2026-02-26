@@ -77,4 +77,23 @@ app.post('/create', async (req, res) => {
   }
 });
 
+app.get('/read', async (req, res) => {
+  try {
+    const users = await userModel.find();
+
+    res.status(200).json({
+      success: true,
+      users: users
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+
+  }
+});
+
 app.listen(5000, () => console.log('Server running on port 5000'));
