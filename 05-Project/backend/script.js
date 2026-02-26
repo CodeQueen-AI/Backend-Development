@@ -77,79 +77,117 @@ app.post("/create", async (req, res) => {
 });
 
 
-// READ USERS
+
+// // READ USERS
+// app.get("/read", async (req, res) => {
+
+//   try {
+
+//     const users = await userModel.find();
+
+//     res.status(200).json({
+//       success: true,
+//       users: users
+//     });
+
+//   } catch (err) {
+
+//     res.status(500).json({
+//       success: false,
+//       message: err.message
+//     });
+
+//   }
+
+// });
+
 app.get("/read", async (req, res) => {
 
-  try {
+  const users = await userModel.find();
 
-    const users = await userModel.find();
-
-    res.status(200).json({
-      success: true,
-      users: users
-    });
-
-  } catch (err) {
-
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
-
-  }
+  res.json({
+    success: true,
+    users
+  });
 
 });
 
 // DELETE USER
+// app.delete("/delete/:id", async (req, res) => {
+//   try {
+
+//     const deletedUser = await userModel.findByIdAndDelete(req.params.id);
+
+//     if (!deletedUser) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "User not found"
+//       });
+//     }
+
+//     res.json({
+//       success: true,
+//       message: "User deleted successfully"
+//     });
+
+//   } catch (error) {
+
+//     res.status(500).json({
+//       success: false,
+//       message: error.message
+//     });
+
+//   }
+// });
+
+
 app.delete("/delete/:id", async (req, res) => {
-  try {
 
-    const deletedUser = await userModel.findByIdAndDelete(req.params.id);
+  await userModel.findByIdAndDelete(req.params.id);
 
-    if (!deletedUser) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found"
-      });
-    }
+  res.json({
+    success: true,
+    message: "User deleted successfully"
+  });
 
-    res.json({
-      success: true,
-      message: "User deleted successfully"
-    });
-
-  } catch (error) {
-
-    res.status(500).json({
-      success: false,
-      message: error.message
-    });
-
-  }
 });
+
+// app.put("/update/:id", async (req, res) => {
+//   try {
+
+//     const updatedUser = await userModel.findByIdAndUpdate(
+//       req.params.id,
+//       req.body,
+//       { new: true }
+//     );
+
+//     res.json({
+//       success: true,
+//       user: updatedUser
+//     });
+
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: error.message
+//     });
+//   }
+// });
 
 app.put("/update/:id", async (req, res) => {
-  try {
 
-    const updatedUser = await userModel.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+  const updatedUser = await userModel.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
 
-    res.json({
-      success: true,
-      user: updatedUser
-    });
+  res.json({
+    success: true,
+    user: updatedUser
+  });
 
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message
-    });
-  }
 });
-
 // START SERVER
 app.listen(5000, () => {
   console.log("Server running on port 5000");
