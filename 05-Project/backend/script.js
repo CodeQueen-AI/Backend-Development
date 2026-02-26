@@ -127,6 +127,33 @@ app.get("/read", async (req, res) => {
 
 });
 
+// DELETE USER
+app.delete("/delete/:id", async (req, res) => {
+  try {
+
+    const deletedUser = await userModel.findByIdAndDelete(req.params.id);
+
+    if (!deletedUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "User deleted successfully"
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+
+  }
+});
 
 // START SERVER
 app.listen(5000, () => {
