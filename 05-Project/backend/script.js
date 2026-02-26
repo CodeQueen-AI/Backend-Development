@@ -39,7 +39,6 @@
 
 // app.listen(5000)
 
-
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -77,11 +76,8 @@ app.get("/", (req, res) => {
 
 // CREATE USER
 app.post("/create", async (req, res) => {
-
   try {
-
     const { name, email, image } = req.body;
-
     const createdUser = await userModel.create({
       name,
       email,
