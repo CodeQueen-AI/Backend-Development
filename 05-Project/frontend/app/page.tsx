@@ -46,18 +46,37 @@ export default function CreateUserPage() {
           </div>
 
           {/* Button */}
-          <button
+          {/* <button
             type="submit"
             className="mt-6 text-white font-semibold py-2 rounded-lg transition hover:opacity-90"
-            style={{ backgroundColor: "#FF3E9B" }}
-          >
+            style={{ backgroundColor: "#FF3E9B" }}>
             Create User
-          </button>
-
+          </button> */}
+          <button
+  type="submit"
+  className="
+    mt-6
+    w-40
+    py-3
+    mx-auto
+    block
+    font-semibold
+    border-2
+    cursor-pointer
+    transition-all
+    duration-300
+    bg-white
+    text-[#FF3E9B]
+    border-[#FF3E9B]
+    hover:bg-[#FF3E9B]
+    hover:text-white
+    hover:border-white
+  "
+>
+  Create User
+</button>
         </form>
-
       </div>
-
     </div>
   );
 }
