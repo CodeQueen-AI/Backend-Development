@@ -23,4 +23,8 @@ app.post('/create' , async (req , res) => {
     res.send((createdUser))
 })
 
+app.getMaxListeners('edit/:userid' , async (req, res) => {
+    userModel.findOne({_id: req.params.user})
+})
+
 app.listen(5000)
