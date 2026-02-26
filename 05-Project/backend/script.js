@@ -13,54 +13,6 @@ app.use(cors({
   origin: "http://localhost:3000"
 }));
 
-// // connect mongodb (ONLY ONCE)
-// mongoose.connect("mongodb://127.0.0.1:27017/userDB")
-// .then(() => {
-//   console.log("MongoDB connected");
-// })
-// .catch((err) => {
-//   console.log("MongoDB connection error:", err);
-// });
-
-
-// // TEST ROUTE (IMPORTANT for debugging)
-// app.get("/", (req, res) => {
-//   res.json({
-//     success: true,
-//     message: "Backend working"
-//   });
-// });
-
-
-// Create User
-// app.post("/create", async (req, res) => {
-//   try {
-//     const { name, email, image } = req.body;
-//     const createdUser = await userModel.create({
-//       name,
-//       email,
-//       image
-//     });
-
-//     res.status(200).json({
-//       success: true,
-//       message: "User created successfully",
-//       user: createdUser
-//     });
-
-//   } catch (err) {
-
-//     console.log(err);
-
-//     res.status(500).json({
-//       success: false,
-//       message: err.message
-//     });
-
-//   }
-
-// });
-
 // Create Users
 app.post("/create", async (req, res) => {
   const { name, email, image } = req.body;
@@ -76,104 +28,16 @@ app.post("/create", async (req, res) => {
   });
 });
 
-
-
-// // READ USERS
-// app.get("/read", async (req, res) => {
-
-//   try {
-
-//     const users = await userModel.find();
-
-//     res.status(200).json({
-//       success: true,
-//       users: users
-//     });
-
-//   } catch (err) {
-
-//     res.status(500).json({
-//       success: false,
-//       message: err.message
-//     });
-
-//   }
-
-// });
-
+// Read Users
 app.get("/read", async (req, res) => {
-
   const users = await userModel.find();
-
   res.json({
     success: true,
     users
   });
-
 });
 
-// DELETE USER
-// app.delete("/delete/:id", async (req, res) => {
-//   try {
-
-//     const deletedUser = await userModel.findByIdAndDelete(req.params.id);
-
-//     if (!deletedUser) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "User not found"
-//       });
-//     }
-
-//     res.json({
-//       success: true,
-//       message: "User deleted successfully"
-//     });
-
-//   } catch (error) {
-
-//     res.status(500).json({
-//       success: false,
-//       message: error.message
-//     });
-
-//   }
-// });
-
-
-app.delete("/delete/:id", async (req, res) => {
-
-  await userModel.findByIdAndDelete(req.params.id);
-
-  res.json({
-    success: true,
-    message: "User deleted successfully"
-  });
-
-});
-
-// app.put("/update/:id", async (req, res) => {
-//   try {
-
-//     const updatedUser = await userModel.findByIdAndUpdate(
-//       req.params.id,
-//       req.body,
-//       { new: true }
-//     );
-
-//     res.json({
-//       success: true,
-//       user: updatedUser
-//     });
-
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: error.message
-//     });
-//   }
-// });
-
+// Update Users
 app.put("/update/:id", async (req, res) => {
 
   const updatedUser = await userModel.findByIdAndUpdate(
@@ -188,7 +52,15 @@ app.put("/update/:id", async (req, res) => {
   });
 
 });
-// START SERVER
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+
+// Delete Users
+app.delete("/delete/:id", async (req, res) => {
+  await userModel.findByIdAndDelete(req.params.id);
+  res.json({
+    success: true,
+    message: "User deleted successfully"
+  });
+
 });
+
+app.listen(5000)
