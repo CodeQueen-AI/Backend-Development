@@ -185,7 +185,7 @@ export default function CreateUserPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
-  const [message, setMessage] = useState(""); // ✅ Success/Error message
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -200,16 +200,18 @@ export default function CreateUserPage() {
       const data = await res.json();
 
       if (data.success) {
-        setMessage(data.message); // Show success
+        setMessage(data.message);
         setName("");
         setEmail("");
         setImage("");
+        // Remove message after 3 seconds
+        setTimeout(() => setMessage(""), 3000);
       } else {
-        setMessage("Error creating user."); // Show error
+        setMessage(data.message || "Error creating user.");
       }
     } catch (err) {
       console.error(err);
-      setMessage("Error creating user."); // Show error
+      setMessage("Error creating user.");
     }
   };
 
@@ -242,7 +244,6 @@ export default function CreateUserPage() {
           )}
 
           <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
-            {/* Name */}
             <div>
               <label className="block text-sm font-medium mb-1">NAME</label>
               <input
@@ -254,7 +255,6 @@ export default function CreateUserPage() {
               />
             </div>
 
-            {/* Email */}
             <div>
               <label className="block text-sm font-medium mb-1">EMAIL</label>
               <input
@@ -266,7 +266,6 @@ export default function CreateUserPage() {
               />
             </div>
 
-            {/* Image URL */}
             <div>
               <label className="block text-sm font-medium mb-1">IMAGE URL</label>
               <input
@@ -277,7 +276,6 @@ export default function CreateUserPage() {
               />
             </div>
 
-            {/* Button */}
             <button
               type="submit"
               className="mt-6 w-40 py-3 mx-auto block font-semibold border-2 cursor-pointer transition-all duration-300 bg-white text-[#FF3E9B] border-[#FF3E9B] hover:bg-[#FF3E9B] hover:text-white hover:border-white"

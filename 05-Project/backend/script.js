@@ -41,54 +41,40 @@
 
 
 
+// index.js
 import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
 import userModel from './models/user.js';
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: 'http://localhost:3000' }));
 
-// Read all users
-app.get('/read', async (req, res) => {
-  try {
-    let users = await userModel.find();
-    res.render('read', { users });
-  } catch (err) {
-    res.status(500).send({ success: false, message: err.message });
-  }
-});
+// ✅ Connect to MongoDB only once
+if (mongoose.connection.readyState === 0) {
+  mongoose
+    .connect('mongodb://127.0.0.1:27017/userDB', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => console.log('MongoDB connected'))
+    .catch((err) => console.log('MongoDB connection error:', err));
+} else {
+  console.log('MongoDB already connected');
+}
 
-// Create user
+// Create user route
 app.post('/create', async (req, res) => {
   try {
-    let { name, email, image } = req.body;
-
-    let createdUser = await userModel.create({ name, email, image });
-
-    res.status(200).send({ success: true, message: "User created successfully!", user: createdUser });
+    const { name, email, image } = req.body;
+    const createdUser = await userModel.create({ name, email, image });
+    res.status(200).send({ success: true, message: 'User created successfully!', user: createdUser });
   } catch (err) {
-    res.status(500).send({ success: false, message: "Error creating user." });
+    console.error('Create user error:', err);
+    res.status(500).send({ success: false, message: 'Error creating user.' });
   }
 });
 
-// Edit user
-app.get('/edit/:userid', async (req, res) => {
-  try {
-    const user = await userModel.findOne({ _id: req.params.userid });
-    res.render('edit', { user });
-  } catch (err) {
-    res.status(500).send({ success: false, message: "Error fetching user." });
-  }
-});
-
-// Delete user
-app.get('/delete/:id', async (req, res) => {
-  try {
-    await userModel.findOneAndDelete({ _id: req.params.id });
-    res.redirect('/read');
-  } catch (err) {
-    res.status(500).send({ success: false, message: "Error deleting user." });
-  }
-});
-
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(5000, () => console.log('Server running on port 5000'));
