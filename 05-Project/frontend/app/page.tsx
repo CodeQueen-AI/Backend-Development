@@ -1,12 +1,12 @@
 export default function CreateUserPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center">
       
       {/* Card */}
-      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+      <div className="p-8 w-full max-w-md">
         
         {/* Heading */}
-        <h1 className="text-2xl font-bold text-center mb-6">
+        <h1 className="text-5xl font-bold text-center mb-6">
           Create Users
         </h1>
 
