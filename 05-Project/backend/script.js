@@ -6,8 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/read' , (req , res) => {
-    res.send('read')
+app.get('/read' , async (req , res) => {
+    let users = await userModelfind();
+    res.render('read' , {users})
 })
 
 app.post('/create' , async (req , res) => {
