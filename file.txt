@@ -1,2 +1,1 @@
 packagejson se file name change krna hai 
-ye hum ne alag alag folder mei hi git ignore ad kia hwa ye ik hi file ni rakh skhte hai kia 
