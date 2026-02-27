@@ -7,24 +7,33 @@ import { useState } from "react";
 export default function UserPage() {
 
   const [text, setText] = useState("");
+  const [successMsg, setSuccessMsg] = useState(""); // New state
 
   // submit function
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:5000/tasks/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ text })
-    });
+    try {
+      const res = await fetch("http://localhost:5000/tasks/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text })
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      alert("Task created successfully");
-      setText(""); // clear input
+      if (data.success) {
+        setSuccessMsg("Task created successfully!"); // Show message
+        setText(""); // clear input
+
+        // Optional: auto-hide message after 3 seconds
+        setTimeout(() => setSuccessMsg(""), 3000);
+      }
+    } catch (err) {
+      console.error(err);
+      setSuccessMsg("Failed to create task."); // error message
     }
   };
 
@@ -50,10 +59,9 @@ export default function UserPage() {
           </h1>
 
           {/* FORM */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
             <div>
-
               <label className="block text-sm font-medium mb-1">
                 TASK
               </label>
@@ -65,7 +73,6 @@ export default function UserPage() {
                 className="w-full border-b border-gray-400 focus:outline-none focus:border-pink-500 py-1"
                 required
               />
-
             </div>
 
             <button
@@ -79,6 +86,13 @@ export default function UserPage() {
             </button>
 
           </form>
+
+          {/* Success message */}
+          {successMsg && (
+            <p className="mt-4 text-center text-green-500 font-medium">
+              {successMsg}
+            </p>
+          )}
 
         </div>
 
