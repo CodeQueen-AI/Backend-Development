@@ -1,7 +1,9 @@
 import express from 'express';
 const app = express()
+const cookieParser = require('cookie-parser')
 
-const bycrpt = require('bycrypt')
+app.use(cookieParser())
+
 app.get('/' , (req, res) => {
     res.cookie("name" , "harsh");
     res.send("Done")
