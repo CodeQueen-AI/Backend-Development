@@ -30,11 +30,13 @@ export default function UserPage() {
             </div>
 
             <button
-              type="submit"
-              className="mt-6 w-40 py-3 mx-auto block font-semibold border-2 cursor-pointer transition-all 
-                duration-300">
-              Add To Task
-            </button>
+  type="submit"
+  className="mt-6 w-40 py-3 mx-auto block font-semibold 
+  bg-[#FB2576] text-white border-2 border-white
+  hover:bg-white hover:text-[#FB2576] hover:border-[#FB2576]
+  cursor-pointer transition-all duration-300">
+  Add To Task
+</button>
           </form>
         </div>
       </div>
