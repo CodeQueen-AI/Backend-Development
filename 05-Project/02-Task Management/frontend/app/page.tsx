@@ -7,9 +7,9 @@ export default function UserPage() {
     <div className="min-h-screen">
       <div className="p-6">
         <Link
-          href="/read"
+          href="/tasks"
           className="inline-flex items-center gap-2 text-[#FF3E9B] font-medium hover:underline transition 
-          cursor-pointer">
+          cursor-pointer mb-10">
           All Tasks
           <FaArrowRight />
         </Link>
@@ -17,7 +17,7 @@ export default function UserPage() {
 
       <div className="flex items-center justify-center">
         <div className="p-8 w-full max-w-md">
-          <h1 className="text-5xl font-semibold text-center mb-6 text-[#FB2576]">
+          <h1 className="text-5xl font-semibold text-center mb-12 text-[#FB2576]">
             Add To Task
           </h1>
           <form className="flex flex-col gap-8">
