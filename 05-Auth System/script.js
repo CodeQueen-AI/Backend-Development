@@ -1,6 +1,6 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-const jwt = require('sonwebtoken')
+import jwt from 'jsonwebtoken';
 const app = express();
 
 app.use(cookieParser())
@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
 });
 
 app.get("/read", function (req, res) {
-    console.log(res.cookies.token)
+    let data = jwt.verify(req.cookies.token, "secret");
+    console.log(data)
 })
 
 app.listen(3000)
