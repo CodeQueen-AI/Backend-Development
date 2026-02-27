@@ -9,10 +9,9 @@ app.get('/' , (req, res) => {
     res.send("Done")
 })
 
-app.get('/' , (req, res) => {
+app.get('/read' , (req, res) => {
     console.log(req.cookies)
     res.send("Read Page")
 })
 
 app.listen(3000)
-
