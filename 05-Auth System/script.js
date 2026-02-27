@@ -1,14 +1,18 @@
 import express from 'express';
-const app = express()
+import bcrypt from 'bcrypt';
 
-const bycrpt = require('bycrypt')
+const app = express();
+const password = "plmnkoijbhuygv";
 
-app.get('/' , (req, res) => {
-    bycrypt.genSalt(saltRounds, function(err, salt)) {
-        bycrypt.hash(myPlaintextPassword, salt , function(err, hash) {
-            // Store hash in your password DB
-        })
-    }
-})
+app.get('/', (req, res) => {
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+            console.log("Hashed Password:", hash);
+            res.send("Password hashed! Check console.");
+        });
+    });
+});
 
-app.listen(3000)
+app.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
+});
