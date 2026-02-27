@@ -13,4 +13,10 @@ app.get('/', (req, res) => {
     });
 });
 
+// Check how the password matches the hash
+app.get('/', (req, res) => {
+    bycrypt.compare("plmnkoijbhuygv" , "$2b$10$7FMrxAHbTHArh.y/qiVvTerZwQ/2qtcbaJreUHp33QG9K/sy3nccK/sy3nccK")
+    console.log(result)
+});
+
 app.listen(3000)
