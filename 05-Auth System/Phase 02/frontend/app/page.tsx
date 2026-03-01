@@ -70,9 +70,13 @@ export default function CreateAccount() {
           </button> */}
           <button
   type="submit"
-  className="w-2/3 mx-auto block bg-white text-[#261CC1] border border-[#261CC1] py-3 rounded-lg font-medium 
+  className="w-1/2 mx-auto block 
+             bg-white text-[#261CC1] 
+             border-2 border-[#261CC1] 
+             py-3 font-medium 
              hover:bg-[#261CC1] hover:text-white hover:border-white 
-             transition-all duration-300 mt-6"
+             transition-all duration-300 
+             mt-6 cursor-pointer"
 >
   Create User
 </button>
