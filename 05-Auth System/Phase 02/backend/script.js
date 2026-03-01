@@ -1,4 +1,5 @@
 import express from 'express';
+import userModel from './userModels.js'; 
 const cookieParser = require('cookie-parser')
 const app = express()
 app.use(express.json())
