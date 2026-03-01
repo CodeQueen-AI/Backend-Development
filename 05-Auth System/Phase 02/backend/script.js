@@ -10,4 +10,16 @@ app.get('/' , (req, res) => {
     res.send("Welcome")
 })
 
+app.post('/create' , async(req, res) => {
+    let {username, email, password, age} = req.body;
+
+    let createdUser = await userModel.create({
+        username,
+        email,
+        password,
+        age
+    })
+    res.send((createdUser))
+})
+
 app.listen(3000)
