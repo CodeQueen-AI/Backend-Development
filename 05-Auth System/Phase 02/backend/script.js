@@ -47,7 +47,7 @@ app.post("/create", async (req, res) => {
 });
 
 app.post('/login' , (req, res) => {
-    
+    userModel.findOne({email: req.body.email})
 })
 
 app.get('/logout' , (req, res) => {
