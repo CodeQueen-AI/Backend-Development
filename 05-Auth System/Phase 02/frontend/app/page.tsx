@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,7 +16,7 @@ export default function CreateAccount() {
           Create Your Account
         </h1>
 
-        <form className="space-y-6">
+        <form className="space-y-4">
 
           {/* Username */}
           <div>
@@ -30,7 +31,7 @@ export default function CreateAccount() {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label className="block text-sm font-medium mb-1">
               Email
             </label>
             <input
@@ -41,7 +42,7 @@ export default function CreateAccount() {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label className="block text-sm font-medium mb-1">
               Password
             </label>
             <input
@@ -52,7 +53,7 @@ export default function CreateAccount() {
 
           {/* Age */}
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label className="block text-sm font-medium mb-1">
               Age
             </label>
             <input
@@ -62,24 +63,31 @@ export default function CreateAccount() {
           </div>
 
           {/* Button */}
-          {/* <button
+          <button
             type="submit"
-            className="w-full bg-[#261CC1] text-white py-2 rounded-lg hover:opacity-90 transition duration-300 mt-4"
+            className="w-1/2 mx-auto block 
+                       bg-white text-[#261CC1] 
+                       border-2 border-[#261CC1] 
+                       py-3 font-medium 
+                       hover:bg-[#261CC1] hover:text-white hover:border-white 
+                       transition-all duration-300 
+                       mt-6 cursor-pointer"
           >
             Create User
-          </button> */}
-          <button
-  type="submit"
-  className="w-1/2 mx-auto block 
-             bg-white text-[#261CC1] 
-             border-2 border-[#261CC1] 
-             py-3 font-medium 
-             hover:bg-[#261CC1] hover:text-white hover:border-white 
-             transition-all duration-300 
-             mt-6 cursor-pointer"
->
-  Create User
-</button>
+          </button>
+
+          {/* Login Link */}
+          <div className="text-center mt-6">
+            <p className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link
+                href="/login"
+                className="text-[#261CC1] font-medium hover:underline"
+              >
+                Login
+              </Link>
+            </p>
+          </div>
 
         </form>
       </div>
