@@ -3,8 +3,14 @@ import userModel from "./userModels.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors({
+  origin: "http://localhost:3000", 
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,18 +20,15 @@ app.get("/", (req, res) => {
   res.send("Welcome");
 });
 
-// Create
+// Create user
 app.post("/create", async (req, res) => {
   try {
-    let { username, email, password, age } = req.body;
-
-    // Generate salt
-    const salt = await bcrypt.genSalt(10);
+    const { username, email, password, age } = req.body;
 
     // Hash password
+    const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
-    // 3️⃣ Create user
     const createdUser = await userModel.create({
       username,
       email,
@@ -34,33 +37,39 @@ app.post("/create", async (req, res) => {
     });
 
     // Create token
-    const token = jwt.sign({ email }, "shhhhhsecretkey");
+    const token = jwt.sign({ email }, "splkoun");
 
     // Send token in cookie
-    res.cookie("token", token);
+    res.cookie("token", token, { httpOnly: true });
 
-    res.send(createdUser);
-
+    res.json({ user: createdUser, token });
   } catch (error) {
-    res.status(500).send("Error creating user");
+    res.status(500).json({ message: "Error creating user", error });
   }
 });
 
-app.post('/login' , async (req, res) => {
-    let user = await userModel.findOne({email: req.body.email})
-    if(!user) return res.send('something is wrong!')
-    bycrypt.compare(req.body.password, user.password, function(err, reuslt) {
-        if(result){
-            const token = jwt.sign({ email : user.email }, "shhhhhsecretkey");
-            res.cookie("token", token);
-            res.send("Yes You can login!")
-        }
-            else res.send("Something is wrong!")
-})
-})
+// Login user
+app.post("/login", async (req, res) => {
+  try {
+    const user = await userModel.findOne({ email: req.body.email });
+    if (!user) return res.status(400).send("Email or password is wrong!");
 
-app.get('/logout' , (req, res) => {
-    res.cookie('token' , "");
-    res.redirect("/");
-})
-app.listen(3000)
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) return res.status(400).send("Email or password is wrong!");
+
+    const token = jwt.sign({ email: user.email }, "splkoun");
+    res.cookie("token", token, { httpOnly: true });
+
+    res.json({ message: "Logged in successfully!", token });
+  } catch (err) {
+    res.status(500).send("Server error");
+  }
+});
+
+// Logout
+app.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.send("Logged out");
+});
+
+app.listen(5000)
