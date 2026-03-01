@@ -51,9 +51,11 @@ app.post('/login' , async (req, res) => {
     if(!user) return res.send('something is wrong!')
     bycrypt.compare(req.body.password, user.password, function(err, reuslt) {
         if(result){
+            const token = jwt.sign({ email : user.email }, "shhhhhsecretkey");
+            res.cookie("token", token);
             res.send("Yes You can login!")
         }
-        else res.send("Something is wrong!")
+            else res.send("Something is wrong!")
 })
 })
 
