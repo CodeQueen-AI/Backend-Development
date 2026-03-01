@@ -48,7 +48,8 @@ app.post("/create", async (req, res) => {
 
 app.post('/login' , async (req, res) => {
     let user = await userModel.findOne({email: req.body.email})
-    console.log(user)
+    if(!user) return res.send('something is wrong!')
+    console.log(user.password, req.body.password)
 })
 
 app.get('/logout' , (req, res) => {
