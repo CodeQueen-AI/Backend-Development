@@ -78,7 +78,7 @@ export default function CreateAccount() {
 
           {/* Login Link */}
           <div className="text-center mt-6">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm">
               Already have an account?{" "}
               <Link
                 href="/login"
