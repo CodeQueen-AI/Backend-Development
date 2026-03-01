@@ -46,4 +46,12 @@ app.post("/create", async (req, res) => {
   }
 });
 
+app.post('/login' , (req, res) => {
+    
+})
+
+app.get('/logout' , (req, res) => {
+    res.cookie('token' , "");
+    res.redirect("/");
+})
 app.listen(3000)
