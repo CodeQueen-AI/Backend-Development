@@ -22,8 +22,16 @@ app.get('/profile', isLoggedIn , (req, res) => {
     res.send("profile", {user})
 })
 
-app.post('/post', isLoggedIn , (req, res) => {
+app.post('/post', isLoggedIn , async(req, res) => {
     let user = await userModel.findOne({email: req.user.email});
+    let {content} = req.body
+
+    let post = await postModel.create({
+        user:user._id,
+        content : content
+    })
+
+    user.posts.push(post._id);
     
 })
 
