@@ -44,23 +44,17 @@ app.post('/login' , async  (req, res) => {
 
     let user =  await userModel.findOne({email});
     if(user) return res.status(500).send("Something went wrong")
-
-    bcrypt.genSalt(10, {err, salt} => {
-        bcrypt.hash(password, salt, async (err, hash) => {
-            let user = await userModel.create({
-                username,
-                email,
-                age,
-                name,
-                password: hash
-            });
-
-            // Login
-            let token = jwt.sign({email: email, userid: user._id}, "shhhh");
+        bcrypt.hash(password, salt, async (err, result) => {
+    if(result) res.status(200).send("you can login!")
+        else redirect("/login")
+    let token = jwt.sign({email: email, userid: user._id}, "shhhh");
             res.cookie("token", token);
-            res.send("registered")
-        })
-    })
 })
+
+app.get('/logout', (req, res) => {
+    res.cookie("token" , "");
+    res.redirect("login")
+})
+
 
 app.listen(3000)
