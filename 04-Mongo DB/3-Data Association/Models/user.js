@@ -3,10 +3,16 @@ import mongoose from 'mongoose';
 mongoose.connect('mongodb://127.0.0.1:27017/Database testing')
 
 const userSchema = new mongoose.Schema({
-    username: String,
+    username: {
+        type: String
+    },
     email: String,
     age: Number,
-    posts: Array
+    posts: [
+        {
+            type: mongoose.Schema.Types.Object,
+            ref: 'post'}
+    ]
 });
 
 const userModel = mongoose.model('User', userSchema);
