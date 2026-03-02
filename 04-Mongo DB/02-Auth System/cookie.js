@@ -1,6 +1,6 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 const app = express()
-const cookieParser = require('cookie-parser')
 
 app.use(cookieParser())
 
