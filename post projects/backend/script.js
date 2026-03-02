@@ -32,7 +32,8 @@ app.post('/post', isLoggedIn , async(req, res) => {
     })
 
     user.posts.push(post._id);
-    
+    await user.save();
+    res.redirect("/profile")
 })
 
 app.post('/register' , async  (req, res) => {
@@ -68,6 +69,7 @@ app.post('/login' , async  (req, res) => {
         else redirect("/login")
     let token = jwt.sign({email: email, userid: user._id}, "shhhh");
             res.cookie("token", token);
+})
 })
 
 app.get('/logout', (req, res) => {
