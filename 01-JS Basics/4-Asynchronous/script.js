@@ -6,5 +6,4 @@ async function abcd(){
     console.log(ans.results);
     console.log(ans.results[0].name); 
 }
-
 abcd();
