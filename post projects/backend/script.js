@@ -1,6 +1,8 @@
 import express from 'express';
 import userModel from './Models/user.js'; 
+import postModel from './Models/post.js'; 
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const app = express()
 const cookieParser = require('cookie-parser');
@@ -27,7 +29,36 @@ app.post('/register' , async  (req, res) => {
                 age,
                 name,
                 password: hash
-            })
+            });
+
+            // Login
+            let token = jwt.sign({email: email, userid: user._id}, "shhhh");
+            res.cookie("token", token);
+            res.send("registered")
+        })
+    })
+})
+
+app.post('/login' , async  (req, res) => {
+    let {email, password} = req.body
+
+    let user =  await userModel.findOne({email});
+    if(user) return res.status(500).send("Something went wrong")
+
+    bcrypt.genSalt(10, {err, salt} => {
+        bcrypt.hash(password, salt, async (err, hash) => {
+            let user = await userModel.create({
+                username,
+                email,
+                age,
+                name,
+                password: hash
+            });
+
+            // Login
+            let token = jwt.sign({email: email, userid: user._id}, "shhhh");
+            res.cookie("token", token);
+            res.send("registered")
         })
     })
 })
