@@ -18,9 +18,13 @@ app.get('/create' , async (req, res) => {
 })
 
 // Post Create
-// app.get('/post/create' , async (req, res) => {
-//     postModel.Model.create
-// })
-
+app.get('/post/create' , async (req, res) => {
+    let post = await postModel.create({
+        postdata: "Hello How are you?",
+        user: "69a5cb91b578e4038ac45fa2"
+    })
+    let user = await userModel.findOne({_id: "69a5cb91b578e4038ac45fa2"});
+    user.post.push(post._id)
+})
 
 app.listen(3000)
