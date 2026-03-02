@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://127.0.0.1:27017/Database testing')
-
 const postSchema = mongoose.Schema({
     postdata: String,
-    user: String,
+    user: {
+        type: mongoose.Schema.Types.Object,
+    },
     date: {
         type: Date,
         default: Date.now
