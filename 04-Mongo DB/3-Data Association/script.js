@@ -7,6 +7,7 @@ app.get('/' , (req, res) => {
     res.send("Welcome")
 })
 
+// Create
 app.get('/create' , async (req, res) => {
     let user = await userModel.create({
         username: "codequeen", 
@@ -15,5 +16,11 @@ app.get('/create' , async (req, res) => {
     })
     res.send(user)
 })
+
+// Post Create
+// app.get('/post/create' , async (req, res) => {
+//     postModel.Model.create
+// })
+
 
 app.listen(3000)
