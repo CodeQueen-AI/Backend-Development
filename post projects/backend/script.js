@@ -18,6 +18,18 @@ app.post('/register' , async  (req, res) => {
     let {email, password, username, name, age} = req.body
     let user =  await userModel.findOne({email});
     if(user) return res.status(500).send("User already registered")
+
+    bcrypt.genSalt(10, {err, salt} => {
+        bcrypt.hash(password, salt, (err, hash) => {
+            userModel.create({
+                username,
+                email,
+                age,
+                name,
+                password: hash
+            })
+        })
+    })
 })
 
 app.listen(3000)
