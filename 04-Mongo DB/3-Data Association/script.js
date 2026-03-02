@@ -7,12 +7,13 @@ app.get('/' , (req, res) => {
     res.send("Welcome")
 })
 
-app.get('/create' , (req, res) => {
-    userModel.create({
+app.get('/create' , async (req, res) => {
+    let user = await userModel.create({
         username: "codequeen", 
         age: 18,
         email: "codequeen",
     })
+    res.send(user)
 })
 
 app.listen(3000)
