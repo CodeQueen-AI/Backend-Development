@@ -16,6 +16,17 @@ app.get('/' , (req, res) => {
     res.send("Welcome")
 })
 
+app.get('/profile', isLoggedIn , (req, res) => {
+    let user = await userModel.findOne({email: req.user.email});
+    console.log(user)
+    res.send("profile", {user})
+})
+
+app.post('/post', isLoggedIn , (req, res) => {
+    let user = await userModel.findOne({email: req.user.email});
+    
+})
+
 app.post('/register' , async  (req, res) => {
     let {email, password, username, name, age} = req.body
     let user =  await userModel.findOne({email});
@@ -56,5 +67,10 @@ app.get('/logout', (req, res) => {
     res.redirect("login")
 })
 
-
+function isLoggedIn(req, res, next){
+    if(req.cookies.token === "") res.send('You must be logged in')
+        else{
+    let data = jwt.verify(req.cookies.token, "shhhh");
+    req.user = data
+}}
 app.listen(3000)
