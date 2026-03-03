@@ -40,7 +40,8 @@ export default function CreateUserPage() {
     }
   };
   const isFormValid = name && email && image;
-  return (
+
+return (
     <div className="min-h-screen">
       <div className="p-6">
         <Link

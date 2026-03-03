@@ -55,7 +55,7 @@ export default function ReadUsersPage() {
               key={user._id}
               className="border p-5 text-center shadow-sm transition">
               <img
-                src={user.image || "https://i.pravatar.cc/150?img=50"}
+                src={user.image}
                 alt={user.name}
                 className="w-24 h-24 mx-auto rounded-full object-cover mb-4"/>
               <h2 className="text-lg font-semibold">{user.name}</h2>
