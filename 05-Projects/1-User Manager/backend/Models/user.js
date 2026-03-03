@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://127.0.0.1:27017/taskmanager')
+mongoose.connect('mongodb://127.0.0.1:27017/usermanager')
 
 const userSchema = new mongoose.Schema({
     name: String,
