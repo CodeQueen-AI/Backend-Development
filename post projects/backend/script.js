@@ -17,13 +17,21 @@ app.get('/' , (req, res) => {
 })
 
 app.get('/profile', isLoggedIn , (req, res) => {
-    let user = await userModel.findOne({email: req.user.email});
-    console.log(user)
+    let user = await userModel.findOne({email: req.user.email}).populate("posts");
     res.send("profile", {user})
 })
 
+app.get('/like/:id', isLoggedIn , (req, res) => {
+    let post = await userModel.findOne({_id: req.params.id}).populate("user");
+    post.likes.push(req.userid)
+    await post.save()
+    res.redirect("/profile")
+})
+
+
 app.post('/post', isLoggedIn , async(req, res) => {
-    let user = await userModel.findOne({email: req.user.email});
+    let user = await userModel.findOne({email: req.user.email}).populate("posts")
+
     let {content} = req.body
 
     let post = await postModel.create({
