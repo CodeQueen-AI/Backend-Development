@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import userModel from "./models/user.js";
+import userModel from "./Models/user.js";
 const app = express();
 
 // Middleware
