@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import taskModel from "./models/task.js";
+import taskModel from "./Models/tasks.js";
 const app = express();
 
 // middleware
