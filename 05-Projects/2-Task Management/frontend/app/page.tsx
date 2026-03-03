@@ -8,7 +8,7 @@ export default function UserPage() {
   const [successMsg, setSuccessMsg] = useState(""); 
 
   // Submit function
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     try {
       const res = await fetch("http://localhost:5000/tasks/create", {
