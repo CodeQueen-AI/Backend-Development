@@ -23,7 +23,13 @@ app.get('/profile', isLoggedIn , (req, res) => {
 
 app.get('/like/:id', isLoggedIn , (req, res) => {
     let post = await userModel.findOne({_id: req.params.id}).populate("user");
-    post.likes.push(req.userid)
+
+    if(post.likes.indexOf(req.user.userid) === -1){
+        post.likes.push(req.user.userid)
+    }
+    else{
+        post.likes.splice(post.likes.indexof(req.user.userid), 1)
+    }
     await post.save()
     res.redirect("/profile")
 })
