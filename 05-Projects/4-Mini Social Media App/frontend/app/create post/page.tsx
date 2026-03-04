@@ -1,10 +1,24 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CreatePostPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const [imageURL, setImageURL] = useState<string>("");
+
+  // Update URL whenever image changes
+  useEffect(() => {
+    if (image) {
+      const url = URL.createObjectURL(image);
+      setImageURL(url);
+
+      // Cleanup URL when component unmounts or image changes
+      return () => URL.revokeObjectURL(url);
+    } else {
+      setImageURL("");
+    }
+  }, [image]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
@@ -43,6 +57,15 @@ export default function CreatePostPage() {
               className="w-full"
             />
           </div>
+
+          {/* Image Preview */}
+          {imageURL && (
+            <div className="mt-4 text-center">
+              <p className="mb-2 font-medium text-gray-700">Image Preview:</p>
+              <img src={imageURL} alt="Preview" className="mx-auto max-h-48 rounded" />
+              <p className="mt-2 text-sm text-gray-500 break-all">URL: {imageURL}</p>
+            </div>
+          )}
 
           <button
             type="button"
