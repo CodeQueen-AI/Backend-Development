@@ -8,7 +8,7 @@ export default function CreatePostPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="p-3 w-full max-w-md">
         <h1 className="text-4xl font-semibold text-center mb-8 text-[#261CC1]">
           Create Post
         </h1>
@@ -20,7 +20,7 @@ export default function CreatePostPage() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full border-b border-gray-400 focus:outline-none focus:border-blue-500 py-1"
+              className="w-full border-b border-gray-400 focus:outline-none focus:border-[#261CC1] py-1"
             />
           </div>
 
@@ -29,7 +29,7 @@ export default function CreatePostPage() {
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full border-b border-gray-400 focus:outline-none focus:border-blue-500 py-1"
+              className="w-full border-b border-gray-400 focus:outline-none focus:border-[#261CC1] py-1"
               rows={3}
             ></textarea>
           </div>
@@ -46,7 +46,7 @@ export default function CreatePostPage() {
 
           <button
             type="button"
-            className="mt-6 w-40 py-3 mx-auto block font-semibold bg-blue-600 text-white border-2 border-white hover:bg-white hover:text-blue-600 hover:border-blue-600 cursor-pointer transition-all duration-300"
+            className="mt-6 w-40 py-3 mx-auto block font-semibold bg-[#261CC1] text-white border-2 border-white hover:bg-white hover:text-[#261CC1] hover:border-[#261CC1] cursor-pointer transition-all duration-300"
           >
             Create Post
           </button>
