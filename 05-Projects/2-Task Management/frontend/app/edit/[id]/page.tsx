@@ -51,7 +51,7 @@ export default function EditPage() {
         Edit Task
       </h1>
 
-      <div className="w-full max-w-md flex flex-col gap-4">
+      <div className="w-full max-w-md flex flex-col gap-6 items-center">
         {/* Simple underline input */}
         <input
           value={text}
@@ -59,10 +59,10 @@ export default function EditPage() {
           className="w-full border-b border-gray-400 focus:outline-none text-lg pb-1"
         />
 
-        {/* Smaller white button with hover */}
+        {/* Centered button with white bg, border, and colored text */}
         <button
           onClick={updateTask}
-          className="px-6 py-2 bg-white border border-gray-300 rounded-md hover:bg-pink-500 hover:text-white transition cursor-pointer w-max">
+          className="px-6 py-2 bg-white border border-pink-500 text-pink-500 rounded-md hover:bg-pink-500 hover:text-white transition cursor-pointer">
           Update Task
         </button>
       </div>
