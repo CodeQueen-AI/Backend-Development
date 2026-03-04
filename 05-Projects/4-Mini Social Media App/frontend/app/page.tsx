@@ -30,11 +30,13 @@
 
 import Navbar from './components/navbar'
 import Post from './create post/page'
+import Userpost from "./posts/[id]/page"
 export default function HomePage() {
   return (
     <div>
     <Navbar/>
-    <Post/>
+    {/* <Post/> */}
+    <Userpost/>
     </div>
   );
 }
