@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function Navbar({ username, profilePic }: { username: string, profilePic: string }) {
+export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
@@ -11,28 +11,28 @@ export default function Navbar({ username, profilePic }: { username: string, pro
       <div className="flex space-x-6 -translate-y-1">
         <a 
           href="#"
-          className="relative hover:text-blue-500 transition"
+          className="relative hover:text-[#261CC1] transition"
         >
           Your Feeds
-          <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
+          <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#261CC1] transition-all group-hover:w-full"></span>
         </a>
         <a 
           href="#"
-          className="relative hover:text-blue-500 transition"
+          className="relative hover:text-[#261CC1] transition"
         >
           Your Posts
-          <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
+          <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#261CC1] transition-all group-hover:w-full"></span>
         </a>
       </div>
 
       {/* Right User Section */}
       <div className="flex items-center space-x-4 relative -translate-y-1">
-        <span className="text-[#261CC1] font-semibold -translate-y-0.5">Hello! {username}</span>
+        <span className="text-[#261CC1] font-semibold -translate-y-0.5">Hello! Sumbal Naz</span>
         
         {/* Profile Pic */}
         <div className="relative">
           <img 
-            src={profilePic}
+            src="/Profile Pic.jpg"
             alt="Profile" 
             className="w-10 h-10 rounded-full cursor-pointer -translate-y-0.5"
             onClick={() => setDropdownOpen(!dropdownOpen)}/>
