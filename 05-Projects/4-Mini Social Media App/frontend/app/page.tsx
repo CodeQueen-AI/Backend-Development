@@ -29,8 +29,12 @@
 // }
 
 import Navbar from './components/navbar'
+import Post from './create post/page'
 export default function HomePage() {
   return (
+    <div>
     <Navbar/>
+    <Post/>
+    </div>
   );
 }
