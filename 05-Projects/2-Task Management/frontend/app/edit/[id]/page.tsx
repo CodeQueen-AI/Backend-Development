@@ -51,16 +51,18 @@ export default function EditPage() {
         Edit Task
       </h1>
 
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md flex flex-col gap-4">
+        {/* Simple underline input */}
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full border border-gray-300 p-3 rounded-md mb-4"
+          className="w-full border-b border-gray-400 focus:outline-none text-lg pb-1"
         />
 
+        {/* Smaller white button with hover */}
         <button
           onClick={updateTask}
-          className="w-full bg-pink-500 text-white py-3 rounded-md hover:bg-pink-600 transition">
+          className="px-6 py-2 bg-white border border-gray-300 rounded-md hover:bg-pink-500 hover:text-white transition cursor-pointer w-max">
           Update Task
         </button>
       </div>
