@@ -1,5 +1,4 @@
 import express from "express";
-import connectDB from "./config/db.js";
 import Post from "./Models/post.js"
 
 const app = express();
@@ -8,9 +7,6 @@ const PORT = 3000;
 // ===== Middleware =====
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// ===== Connect Database =====
-connectDB();
 
 // ================= ROUTES =================
 

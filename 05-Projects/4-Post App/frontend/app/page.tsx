@@ -15,9 +15,7 @@ export default function CreatePostPage() {
     try {
       const res = await fetch("http://localhost:5000/posts/create", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, description }),
       });
 
@@ -36,37 +34,52 @@ export default function CreatePostPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 px-4">
-      <h1 className="text-2xl font-semibold mb-6 text-center">
-        Create Post
-      </h1>
+    <div>
+      <div className="flex flex-col items-center justify-start pt-8 px-6">
+        <div className="p-3 w-full max-w-md">
+          <h1 className="text-4xl font-semibold text-center mb-6 text-[#261CC1]">
+            Create Post
+          </h1>
 
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="w-full border p-2 mb-4 rounded"
-      />
+          {/* Title */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Title</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full border-b border-gray-400 focus:outline-none focus:border-[#261CC1] py-1"
+            />
+          </div>
 
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        rows={3}
-        className="w-full border p-2 mb-4 rounded"
-      />
+          {/* Description */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Description</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full border-b border-gray-400 focus:outline-none focus:border-[#261CC1] py-1"
+              rows={3}
+            ></textarea>
+          </div>
 
-      {message && (
-        <p className="text-center text-sm mb-2">{message}</p>
-      )}
+          {/* Message */}
+          {message && (
+            <p className="text-center mt-2 text-sm">
+              {message}
+            </p>
+          )}
 
-      <button
-        onClick={handleCreatePost}
-        className="w-full bg-black text-white py-2 rounded"
-      >
-        Create Post
-      </button>
+          {/* Create Button */}
+          <button
+            type="button"
+            onClick={handleCreatePost}
+            className="mt-4 w-40 py-3 mx-auto block font-semibold bg-[#261CC1] text-white border-2 border-[#261CC1] hover:bg-white hover:text-[#261CC1] hover:border-[#261CC1] cursor-pointer transition-all duration-300"
+          >
+            Create Post
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
