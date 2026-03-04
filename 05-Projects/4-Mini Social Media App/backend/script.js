@@ -1,5 +1,6 @@
+// server.js
 import express from "express";
-import userModel from "./Models/user.js";
+import User from "./models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
@@ -7,59 +8,49 @@ import cors from "cors";
 
 const app = express();
 
+// Middlewares
 app.use(cors({
-  origin: "http://localhost:3000", 
+  origin: "http://localhost:3000",
   credentials: true
 }));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Create user
+// Create user route
 app.post("/create", async (req, res) => {
   try {
     const { username, email, password, age } = req.body;
 
-    // Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(password, salt);
+    // Check if user exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).json({ message: "Email already registered" });
 
-    const createdUser = await userModel.create({
+    // Hash password
+    const hash = await bcrypt.hash(password, 10);
+
+    // Create user
+    const newUser = await User.create({
       username,
       email,
       password: hash,
       age
     });
 
-    // Create token
-    const token = jwt.sign({ email }, "splkoun");
+    // Create JWT token
+    const token = jwt.sign({ email: newUser.email }, "splkoun");
 
-    // Send token in cookie
+    // Set token cookie
     res.cookie("token", token, { httpOnly: true });
 
-    res.json({ user: createdUser, token });
+    // Respond
+    res.status(201).json({ user: newUser, token });
   } catch (error) {
-    res.status(500).json({ message: "Error creating user", error });
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-// Login user
-app.post("/login", async (req, res) => {
-  try {
-    const user = await userModel.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send("Email or password is wrong!");
-
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (!match) return res.status(400).send("Email or password is wrong!");
-
-    const token = jwt.sign({ email: user.email }, "splkoun");
-    res.cookie("token", token, { httpOnly: true });
-
-    res.json({ message: "Logged in successfully!", token });
-  } catch (err) {
-    res.status(500).send("Server error");
-  }
-});
-
-app.listen(5000)
+// Start server
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
