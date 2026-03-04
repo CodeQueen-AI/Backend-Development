@@ -1,15 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
-export default function EditPage({ params }: any) {
+import { useState, useEffect } from "react";
+import { useRouter, useParams } from "next/navigation";
+
+export default function EditPage() {
   const router = useRouter();
-  const { id } = params;
+  const params = useParams();
+  const id = params.id as string;
 
   const [text, setText] = useState("");
-  const [loading, setLoading] = useState(true);
 
-  // Fetch single task
   useEffect(() => {
     const fetchTask = async () => {
       try {
@@ -19,16 +19,14 @@ export default function EditPage({ params }: any) {
         if (data.success) {
           setText(data.task.text);
         }
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching task:", error);
       }
     };
 
-    fetchTask();
+    if (id) fetchTask();
   }, [id]);
 
-  // Update task
   const updateTask = async () => {
     try {
       const res = await fetch(`http://localhost:5000/tasks/update/${id}`, {
@@ -40,14 +38,12 @@ export default function EditPage({ params }: any) {
       const data = await res.json();
 
       if (data.success) {
-        router.push("/read"); // go back to all tasks
+        router.push("/tasks");
       }
     } catch (error) {
       console.error("Error updating task:", error);
     }
   };
-
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
@@ -59,7 +55,7 @@ export default function EditPage({ params }: any) {
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full border border-gray-300 p-3 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          className="w-full border border-gray-300 p-3 rounded-md mb-4"
         />
 
         <button
