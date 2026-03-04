@@ -9,32 +9,35 @@ export default function Navbar() {
       
       {/* Left Links */}
       <div className="flex space-x-6 -translate-y-1">
+        {/* Feed Link */}
         <a 
           href="#"
-          className="relative hover:text-[#261CC1] transition"
+          className="relative group px-1" // added px-1 for spacing
         >
-          Your Feeds
-          <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#261CC1] transition-all group-hover:w-full"></span>
+          <span className="hover:text-[#261CC1] transition">Your Feeds</span>
+          <span className="absolute left-1 right-1 -bottom-1 h-0.5 bg-[#261CC1] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
         </a>
+
+        {/* Posts Link */}
         <a 
           href="#"
-          className="relative hover:text-[#261CC1] transition"
+          className="relative group px-1" // added px-1 for spacing
         >
-          Your Posts
-          <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#261CC1] transition-all group-hover:w-full"></span>
+          <span className="hover:text-[#261CC1] transition">Your Posts</span>
+          <span className="absolute left-1 right-1 -bottom-1 h-0.5 bg-[#261CC1] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
         </a>
       </div>
 
       {/* Right User Section */}
-      <div className="flex items-center space-x-4 relative -translate-y-1">
-        <span className="text-[#261CC1] font-semibold -translate-y-0.5">Hello! Sumbal Naz</span>
+      <div className="flex items-center space-x-6 relative -translate-y-1">
+        <span className="text-[#261CC1] font-semibold -translate-y-0.2">Hello! Sumbal Naz</span>
         
         {/* Profile Pic */}
         <div className="relative">
           <img 
             src="/Profile Pic.jpg"
             alt="Profile" 
-            className="w-10 h-10 rounded-full cursor-pointer -translate-y-0.5"
+            className="w-10 h-10 rounded-full cursor-pointer -translate-y-0.2"
             onClick={() => setDropdownOpen(!dropdownOpen)}/>
 
           {/* Dropdown */}
