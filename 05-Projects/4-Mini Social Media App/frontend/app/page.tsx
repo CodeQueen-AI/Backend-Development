@@ -28,17 +28,18 @@
 //   );
 // }
 
-import Navbar from './components/navbar'
-import Post from './create post/page'
-import Userpost from "./posts/[userid]/page"
-import Postid from './posts/[id]/page'
+import Navbar from './components/navbar';
+import Post from './create post/page';
+import Userpost from "./posts/[id]/page";
+import Postid from './posts/[id]/page';
+
 export default function HomePage() {
   return (
     <div>
-    <Navbar/>
-    {/* <Post/> */}
-    {/* <Userpost/> */}
-    <Postid>
+      <Navbar />
+      {/* <Post /> */}
+      {/* <Userpost /> */}
+      <Postid />
     </div>
   );
 }
