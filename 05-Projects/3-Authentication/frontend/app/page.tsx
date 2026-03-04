@@ -1,9 +1,6 @@
 "use client"
 import { useState } from "react";
-import { Poppins } from "next/font/google";
 import Link from "next/link";
-
-const poppins = Poppins({ subsets: ["latin"], weight: ["400","500","600","700"] });
 
 export default function CreateAccount() {
   const [form, setForm] = useState({ username: "", email: "", password: "", age: "" });
@@ -20,7 +17,7 @@ export default function CreateAccount() {
       const res = await fetch("http://localhost:5000/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // important for cookies
+        credentials: "include", 
         body: JSON.stringify(form)
       });
 
@@ -33,7 +30,7 @@ export default function CreateAccount() {
   };
 
   return (
-    <div className={`${poppins.className} min-h-screen flex items-center justify-center`}>
+    <div className="min-h-screen flex items-center justify-center">
       <div className="p-5 w-full max-w-md">
         <h1 className="text-4xl font-semibold text-center text-[#261CC1] mb-8">
           Create Your Account
@@ -55,8 +52,7 @@ export default function CreateAccount() {
 
           <button
             type="submit"
-            className="w-1/2 mx-auto block bg-white text-[#261CC1] border-2 border-[#261CC1] py-3 font-medium hover:bg-[#261CC1] hover:text-white hover:border-white transition-all duration-300 mt-6 cursor-pointer"
-          >
+            className="w-1/2 mx-auto block bg-white text-[#261CC1] border-2 border-[#261CC1] py-3 font-medium hover:bg-[#261CC1] hover:text-white hover:border-white transition-all duration-300 mt-6 cursor-pointer">
             Create User
           </button>
 
