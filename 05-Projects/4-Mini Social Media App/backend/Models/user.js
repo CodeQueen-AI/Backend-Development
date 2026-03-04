@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://127.0.0.1:27017/authentication')
+mongoose.connect('mongodb://127.0.0.1:27017/media app')
 
 const userSchema = mongoose.Schema({
     username: String,
