@@ -1,21 +1,14 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://127.0.0.1:27017/socialnetwork')
+mongoose.connect('mongodb://127.0.0.1:27017/authentication')
 
-const userSchema = new mongoose.Schema({
-    username : String,
-    name : String,
-    age : Number,
+const userSchema = mongoose.Schema({
+    username: String,
     email: String,
     password: String,
-    posts : [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            red: "post"
-        }
-    ]
+    age: Number
 });
 
-const userModel = mongoose.model('app', userSchema);
+const userModel = mongoose.model('User', userSchema);
 
 export default userModel;
