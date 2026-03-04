@@ -62,7 +62,7 @@ export default function EditPage() {
         {/* Centered button with white bg, border, and colored text */}
         <button
           onClick={updateTask}
-          className="px-6 py-2 bg-white border border-pink-500 text-pink-500 rounded-md hover:bg-pink-500 hover:text-white transition cursor-pointer">
+          className="px-6 py-2 bg-white border-2 border-[#FB2576] text-[#FB2576] hover:bg-[#FB2576]  hover:text-white transition cursor-pointer">
           Update Task
         </button>
       </div>

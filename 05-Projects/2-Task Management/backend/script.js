@@ -33,52 +33,18 @@ app.get("/tasks/read", async (req, res) => {
   });
 });
 
-// Update Tasks
-// app.put("/tasks/update/:id", async (req, res) => {
-//   const updatedTask = await taskModel.findByIdAndUpdate(
-//     req.params.id,
-//     req.body,
-//     { new: true }
-//   );
-//   res.json({
-//     success: true,
-//     task: updatedTask
-//   });
-// });
-
-
 // Update Task
 app.put("/tasks/update/:id", async (req, res) => {
   try {
-    const { id } = req.params;
-    const { text, completed } = req.body;
-
-    // Check if task exists
-    const existingTask = await taskModel.findById(id);
-    if (!existingTask) {
-      return res.status(404).json({
-        success: false,
-        message: "Task not found"
-      });
-    }
-
-    // Optional: prevent empty text update
-    if (text !== undefined && text.trim() === "") {
-      return res.status(400).json({
-        success: false,
-        message: "Task text cannot be empty"
-      });
-    }
-
-    // Update only provided fields
     const updatedTask = await taskModel.findByIdAndUpdate(
-      id,
-      {
-        ...(text !== undefined && { text }),
-        ...(completed !== undefined && { completed })
-      },
+      req.params.id,
+      req.body,
       { new: true }
     );
+
+    if (!updatedTask) {
+      return res.status(404).json({ success: false, message: "Task not found" });
+    }
 
     res.json({
       success: true,
@@ -87,10 +53,7 @@ app.put("/tasks/update/:id", async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message
-    });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
