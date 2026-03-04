@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 
@@ -52,14 +51,10 @@ export default function EditPage() {
       </h1>
 
       <div className="w-full max-w-md flex flex-col gap-6 items-center">
-        {/* Simple underline input */}
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full border-b border-gray-400 focus:outline-none text-lg pb-1"
-        />
-
-        {/* Centered button with white bg, border, and colored text */}
+          className="w-full border-b border-gray-400 focus:outline-none text-lg pb-1"/>
         <button
           onClick={updateTask}
           className="px-6 py-2 bg-white border-2 border-[#FB2576] text-[#FB2576] hover:bg-[#FB2576]  hover:text-white transition cursor-pointer">
