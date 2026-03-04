@@ -62,10 +62,4 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Logout
-app.get("/logout", (req, res) => {
-  res.clearCookie("token");
-  res.send("Logged out");
-});
-
 app.listen(5000)
