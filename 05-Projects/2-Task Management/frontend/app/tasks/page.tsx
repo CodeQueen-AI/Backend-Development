@@ -104,7 +104,10 @@ export default function ReadPage() {
                 <div className="flex flex-col items-end">
                   <p className="text-sm text-gray-400">{task.date}</p>
                   <div className="flex gap-3 mt-1">
-                    <FaEdit className="cursor-pointer text-blue-500 hover:scale-110 transition text-lg" />
+                    {/* <FaEdit className="cursor-pointer text-blue-500 hover:scale-110 transition text-lg" /> */}
+                    <Link href={`/edit/${task.id}`}>
+  <FaEdit className="cursor-pointer text-blue-500 hover:scale-110 transition text-lg" />
+</Link>
                     <FaTrash
                       onClick={() => deleteTask(task.id)}
                       className="cursor-pointer text-red-500 hover:scale-110 transition text-lg"/>
