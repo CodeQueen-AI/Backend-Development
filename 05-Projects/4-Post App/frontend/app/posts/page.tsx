@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { FaEdit, FaTrash } from "react-icons/fa"
 
 export default function PostsPage() {
 
@@ -31,16 +32,15 @@ export default function PostsPage() {
   }
 
   return (
-
     <div className="p-10">
 
-      {/* top link */}
-      <div className="flex justify-center mb-6">
+      {/* Back to Home */}
+      <div className="flex justify-start mb-6">
         <Link
           href="/"
           className="text-sm hover:underline"
         >
-          Back to Home
+          ← Back To Home
         </Link>
       </div>
 
@@ -53,49 +53,57 @@ export default function PostsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
         {posts.map((post: any) => (
-
           <div
             key={post._id}
-            className="border rounded-xl p-5 space-y-2"
+            className="border rounded-xl p-5 flex flex-col justify-between h-full"
           >
 
-            <h2 className="text-lg font-semibold">
+            {/* Title */}
+            <h2 className="text-lg font-semibold text-center">
               {post.title}
             </h2>
 
-            <p className="text-gray-600">
+            {/* Description */}
+            <p className="text-gray-600 my-2 text-center">
               {post.description}
             </p>
 
-            <p className="text-sm text-gray-400">
-              {new Date(post.createdAt).toLocaleDateString()}
+            {/* Created At */}
+            <p className="text-sm text-gray-400 text-center">
+              Created At: {new Date(post.createdAt).toLocaleDateString()}
             </p>
 
-            {/* buttons */}
-            <div className="flex gap-4 pt-2">
+            {/* Actions */}
+            <div className="flex justify-between items-center mt-3">
 
+              {/* Like */}
               <button
                 onClick={() => likePost(post._id)}
-                className="text-red-500"
+                className="text-red-500 cursor-pointer"
               >
                 ❤️ {post.likes}
               </button>
 
-              <button
-                onClick={() => deletePost(post._id)}
-                className="text-gray-600"
-              >
-                Delete
-              </button>
+              {/* Edit & Delete */}
+              <div className="flex gap-3">
+                <FaEdit
+                  className="cursor-pointer text-blue-500"
+                  size={18}
+                  onClick={() => alert("Edit feature coming soon!")}
+                />
+                <FaTrash
+                  className="cursor-pointer text-gray-600"
+                  size={18}
+                  onClick={() => deletePost(post._id)}
+                />
+              </div>
 
             </div>
 
           </div>
-
         ))}
 
       </div>
-
     </div>
   )
 }
