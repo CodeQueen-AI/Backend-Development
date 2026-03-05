@@ -4,11 +4,9 @@ import { useRouter, useParams } from "next/navigation"
 import Link from "next/link"
 
 export default function EditPostPage() {
-
   const router = useRouter()
   const params = useParams()
   const postId = params.id
-
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
 
@@ -27,13 +25,11 @@ export default function EditPostPage() {
   // Update post
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-
     const res = await fetch(`http://localhost:5000/posts/${postId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, description })
     })
-
     if (res.ok) {
       router.push("/posts")
     } else {
@@ -46,12 +42,10 @@ export default function EditPostPage() {
       <Link href="/posts" className="text-sm hover:underline mb-6 block">
         ← All Posts
       </Link>
-
       <div className="flex flex-col items-center mt-10">
         <h1 className="text-5xl font-semibold mb-10 text-center text-[#1A05A2]">
-          Edit Post
+          Update Post
         </h1>
-
         <form onSubmit={handleSubmit} className="w-[420px] space-y-8">
           <div className="flex flex-col">
             <label className="text-sm mb-1 text-gray-600">Title</label>
@@ -59,23 +53,19 @@ export default function EditPostPage() {
               className="border-b outline-none pb-1 w-full focus:border-[#1A05A2]"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
-            />
+              required/>
           </div>
-
           <div className="flex flex-col">
             <label className="text-sm mb-1 text-gray-600">Description</label>
             <textarea
               className="border-b outline-none pb-1 w-full focus:border-[#1A05A2]"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              required
-            />
+              required/>
           </div>
-
           <button
-            className="block mx-auto px-8 py-4 border-2 border-[#1A05A2] text-[#1A05A2] bg-white cursor-pointer transition hover:bg-[#1A05A2] hover:text-white hover:border-white"
-          >
+            className="block mx-auto px-8 py-4 border-2 border-[#1A05A2] text-[#1A05A2] bg-white 
+            cursor-pointer transition hover:bg-[#1A05A2] hover:text-white hover:border-white">
             Update Post
           </button>
         </form>
