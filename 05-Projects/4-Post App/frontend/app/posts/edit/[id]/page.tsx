@@ -82,7 +82,7 @@ export default function EditPostPage() {
 
           {/* Button */}
           <button
-            className="block mx-auto px-6 py-2 border border-[#1A05A2] text-[#1A05A2] bg-white rounded transition hover:bg-[#1A05A2] hover:text-white hover:border-white"
+            className="block mx-auto px-8 py-4 border-2 cursor-pointer border-[#1A05A2] text-[#1A05A2] bg-white transition hover:bg-[#1A05A2] hover:text-white hover:border-white"
           >
             Update Post
           </button>
