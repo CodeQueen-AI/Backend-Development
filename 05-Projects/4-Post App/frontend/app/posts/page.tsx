@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation"
 import { FaEdit, FaTrash } from "react-icons/fa"
 
 export default function PostsPage() {
-
   const router = useRouter()
   const [posts, setPosts] = useState([])
 
@@ -14,7 +13,6 @@ export default function PostsPage() {
     const data = await res.json()
     setPosts(data)
   }
-
   useEffect(() => {
     getPosts()
   }, [])
@@ -35,13 +33,10 @@ export default function PostsPage() {
 
   return (
     <div className="p-10">
-
-      {/* Back to Home */}
       <div className="flex justify-start mb-6">
         <Link
           href="/"
-          className="text-sm hover:underline"
-        >
+          className="text-sm hover:underline">
           ← Back To Home
         </Link>
       </div>
@@ -51,59 +46,42 @@ export default function PostsPage() {
         All Posts
       </h1>
 
-      {/* posts grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
         {posts.map((post: any) => (
           <div
             key={post._id}
             className="border p-5 flex flex-col justify-between h-full">
-
             {/* Title */}
             <h2 className="text-lg font-semibold text-center mb-2">
               {post.title}
             </h2>
-
             {/* Description */}
             <p className=" mb-2 text-left">
               {post.description}
             </p>
-
             {/* Created At */}
             <p className="text-sm text-gray-600 mb-3 text-left">
               Created At: {new Date(post.createdAt).toLocaleDateString()}
             </p>
-
-            {/* Actions */}
             <div className="flex justify-between items-center mt-auto">
-
-              {/* Like */}
               <button
                 onClick={() => likePost(post._id)}
-                className="text-red-500 cursor-pointer"
-              >
+                className="text-red-500 cursor-pointer">
                 ❤️ {post.likes}
               </button>
-
-              {/* Edit & Delete */}
               <div className="flex gap-3">
                 <FaEdit
                   className="cursor-pointer text-blue-500"
                   size={18}
-                  onClick={() => router.push(`/posts/edit/${post._id}`)}
-                />
+                  onClick={() => router.push(`/posts/edit/${post._id}`)}/>
                 <FaTrash
                   className="cursor-pointer text-red-700"
                   size={18}
-                  onClick={() => deletePost(post._id)}
-                />
+                  onClick={() => deletePost(post._id)}/>
               </div>
-
             </div>
-
           </div>
         ))}
-
       </div>
     </div>
   )
