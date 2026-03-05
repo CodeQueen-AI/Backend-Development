@@ -1,10 +1,12 @@
 "use client"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { FaEdit, FaTrash } from "react-icons/fa"
 
 export default function PostsPage() {
 
+  const router = useRouter()
   const [posts, setPosts] = useState([])
 
   const getPosts = async () => {
@@ -88,7 +90,7 @@ export default function PostsPage() {
                 <FaEdit
                   className="cursor-pointer text-blue-500"
                   size={18}
-                  onClick={() => alert("Edit feature coming soon!")}
+                  onClick={() => router.push(`/posts/edit/${post._id}`)}
                 />
                 <FaTrash
                   className="cursor-pointer text-red-700"
