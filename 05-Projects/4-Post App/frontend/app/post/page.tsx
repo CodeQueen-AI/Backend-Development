@@ -1,71 +1,108 @@
 "use client"
-import { useEffect,useState } from "react"
+import { useEffect, useState } from "react"
+import Link from "next/link"
 
-export default function Posts() {
+export default function PostsPage() {
 
-  const [posts,setPosts] = useState([])
+  const [posts, setPosts] = useState([])
 
-  const getPosts = async ()=>{
+  const getPosts = async () => {
     const res = await fetch("http://localhost:5000/posts")
     const data = await res.json()
     setPosts(data)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getPosts()
-  },[])
+  }, [])
 
-  const deletePost = async (id:string)=>{
-    await fetch(`http://localhost:5000/posts/${id}`,{
-      method:"DELETE"
+  const deletePost = async (id: string) => {
+    await fetch(`http://localhost:5000/posts/${id}`, {
+      method: "DELETE"
     })
     getPosts()
   }
 
-  const likePost = async (id:string)=>{
-    await fetch(`http://localhost:5000/posts/like/${id}`,{
-      method:"PUT"
+  const likePost = async (id: string) => {
+    await fetch(`http://localhost:5000/posts/like/${id}`, {
+      method: "PUT"
     })
     getPosts()
   }
 
   return (
 
-    <div className="p-10 grid gap-6">
+    <div className="p-10">
 
-      {posts.map((post:any)=>(
-        <div
-        key={post._id}
-        className="border p-5 rounded-xl">
+      {/* top links */}
+      <div className="flex gap-6 mb-8">
 
-          <h2 className="text-lg font-semibold">
-            {post.title}
-          </h2>
+        <Link
+          href="/"
+          className="text-sm hover:underline"
+        >
+          Back to Home
+        </Link>
 
-          <p className="text-gray-600">
-            {post.description}
-          </p>
+        <Link
+          href="/create-post"
+          className="text-sm hover:underline"
+        >
+          Create Post
+        </Link>
 
-          <p className="text-sm mt-2">
-            {new Date(post.createdAt).toLocaleDateString()}
-          </p>
+      </div>
 
-          <div className="flex gap-4 mt-3">
+      <h1 className="text-2xl font-semibold mb-6">
+        All Posts
+      </h1>
 
-            <button
-            onClick={()=>likePost(post._id)}>
-              ❤️ {post.likes}
-            </button>
+      {/* posts grid */}
+      <div className="grid gap-6">
 
-            <button
-            onClick={()=>deletePost(post._id)}>
-              Delete
-            </button>
+        {posts.map((post: any) => (
+
+          <div
+            key={post._id}
+            className="border rounded-xl p-5 space-y-2"
+          >
+
+            <h2 className="text-lg font-semibold">
+              {post.title}
+            </h2>
+
+            <p className="text-gray-600">
+              {post.description}
+            </p>
+
+            <p className="text-sm text-gray-400">
+              {new Date(post.createdAt).toLocaleDateString()}
+            </p>
+
+            {/* buttons */}
+            <div className="flex gap-4 pt-2">
+
+              <button
+                onClick={() => likePost(post._id)}
+                className="text-red-500"
+              >
+                ❤️ {post.likes}
+              </button>
+
+              <button
+                onClick={() => deletePost(post._id)}
+                className="text-gray-600"
+              >
+                Delete
+              </button>
+
+            </div>
 
           </div>
 
-        </div>
-      ))}
+        ))}
+
+      </div>
 
     </div>
   )
