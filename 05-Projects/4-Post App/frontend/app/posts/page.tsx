@@ -34,31 +34,23 @@ export default function PostsPage() {
 
     <div className="p-10">
 
-      {/* top links */}
-      <div className="flex gap-6 mb-8">
-
+      {/* top link */}
+      <div className="flex justify-center mb-6">
         <Link
           href="/"
           className="text-sm hover:underline"
         >
           Back to Home
         </Link>
-
-        <Link
-          href="/create-post"
-          className="text-sm hover:underline"
-        >
-          Create Post
-        </Link>
-
       </div>
 
-      <h1 className="text-2xl font-semibold mb-6">
+      {/* Heading */}
+      <h1 className="text-3xl font-semibold mb-10 text-center text-[#1A05A2]">
         All Posts
       </h1>
 
       {/* posts grid */}
-      <div className="grid gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
         {posts.map((post: any) => (
 
