@@ -36,30 +36,44 @@ export default function CreatePost() {
         All Posts
       </Link>
 
-      <div className="flex justify-center mt-10">
+      <div className="flex flex-col items-center mt-20">
+
+        {/* heading */}
+        <h1 className="text-5xl font-semibold mb-10 text-center text-[#1A05A2]">
+          Create Post
+        </h1>
 
         <form
         onSubmit={handleSubmit}
-        className="w-[420px] p-6 border rounded-xl space-y-4">
+        className="w-[420px] space-y-8">
 
-          <h1 className="text-xl font-semibold">
-            Create Post
-          </h1>
+             {/* Title */}
+<div className="flex flex-col">
+  <label className="text-sm mb-1 text-gray-600">
+    Title
+  </label>
 
-          <input
-          placeholder="Title"
-          className="w-full border p-2 rounded"
-          onChange={(e)=>setTitle(e.target.value)}
-          />
+  <input
+    className="border-b outline-none pb-1 w-full focus:border-[#1A05A2]"
+    onChange={(e)=>setTitle(e.target.value)}
+  />
+</div>
 
-          <textarea
-          placeholder="Description"
-          className="w-full border p-2 rounded"
-          onChange={(e)=>setDescription(e.target.value)}
-          />
+{/* Description */}
+<div className="flex flex-col">
+  <label className="text-sm mb-1 text-gray-600">
+    Description
+  </label>
 
+  <textarea
+    className="border-b outline-none pb-1 w-full focus:border-[#1A05A2]"
+    onChange={(e)=>setDescription(e.target.value)}
+  />
+</div>
+
+          {/* button */}
           <button
-          className="bg-black text-white px-4 py-2 rounded">
+          className="px-6 py-2 border border-[#1A05A2] text-[#1A05A2] bg-white rounded transition hover:bg-[#1A05A2] hover:text-white hover:border-white">
             Create Post
           </button>
 
