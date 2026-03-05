@@ -1,7 +1,11 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function CreatePost() {
+
+  const router = useRouter()
 
   const [title,setTitle] = useState("")
   const [description,setDescription] = useState("")
@@ -17,38 +21,51 @@ export default function CreatePost() {
       body:JSON.stringify({title,description})
     })
 
-    alert("Post Created")
+    router.push("/posts")
   }
 
   return (
-    <div className="flex justify-center mt-20">
 
-      <form
-      onSubmit={handleSubmit}
-      className="w-[400px] p-6 border rounded-xl space-y-4">
+    <div className="p-10">
 
-        <h1 className="text-xl font-semibold">
-          Create Post
-        </h1>
+      {/* top link */}
+      <Link
+        href="/posts"
+        className="text-sm hover:underline"
+      >
+        All Posts
+      </Link>
 
-        <input
-        placeholder="Title"
-        className="w-full border p-2 rounded"
-        onChange={(e)=>setTitle(e.target.value)}
-        />
+      <div className="flex justify-center mt-10">
 
-        <textarea
-        placeholder="Description"
-        className="w-full border p-2 rounded"
-        onChange={(e)=>setDescription(e.target.value)}
-        />
+        <form
+        onSubmit={handleSubmit}
+        className="w-[420px] p-6 border rounded-xl space-y-4">
 
-        <button
-        className="bg-black text-white px-4 py-2 rounded">
-          Create
-        </button>
+          <h1 className="text-xl font-semibold">
+            Create Post
+          </h1>
 
-      </form>
+          <input
+          placeholder="Title"
+          className="w-full border p-2 rounded"
+          onChange={(e)=>setTitle(e.target.value)}
+          />
+
+          <textarea
+          placeholder="Description"
+          className="w-full border p-2 rounded"
+          onChange={(e)=>setDescription(e.target.value)}
+          />
+
+          <button
+          className="bg-black text-white px-4 py-2 rounded">
+            Create Post
+          </button>
+
+        </form>
+
+      </div>
 
     </div>
   )
