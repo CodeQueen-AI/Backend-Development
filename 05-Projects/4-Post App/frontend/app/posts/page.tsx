@@ -59,22 +59,22 @@ export default function PostsPage() {
           >
 
             {/* Title */}
-            <h2 className="text-lg font-semibold text-center">
+            <h2 className="text-lg font-semibold text-center mb-2">
               {post.title}
             </h2>
 
             {/* Description */}
-            <p className="text-gray-600 my-2 text-center">
+            <p className="text-gray-600 mb-2 text-left">
               {post.description}
             </p>
 
             {/* Created At */}
-            <p className="text-sm text-gray-400 text-center">
+            <p className="text-sm text-gray-400 mb-3 text-left">
               Created At: {new Date(post.createdAt).toLocaleDateString()}
             </p>
 
             {/* Actions */}
-            <div className="flex justify-between items-center mt-3">
+            <div className="flex justify-between items-center mt-auto">
 
               {/* Like */}
               <button
