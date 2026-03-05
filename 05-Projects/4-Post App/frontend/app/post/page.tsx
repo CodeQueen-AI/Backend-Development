@@ -1,57 +1,72 @@
-"use client";
-import { useState } from "react";
-import Link from "next/link";
-import { FaEdit, FaTrash, FaHeart } from "react-icons/fa";
+"use client"
+import { useEffect,useState } from "react"
 
-interface Post {
-  id: number;
-  title: string;
-  description: string;
-  imageURL?: string;
-}
+export default function Posts() {
 
-export default function PostDetails() {
-  const [liked, setLiked] = useState(false);
+  const [posts,setPosts] = useState([])
 
-  // Example post
-  const post: Post = {
-    id: 1,
-    title: "My Awesome Post",
-    description: "This is a detailed description of the post. You can write a few lines about it.",
-    imageURL: "https://via.placeholder.com/400x200"
-  };
+  const getPosts = async ()=>{
+    const res = await fetch("http://localhost:5000/posts")
+    const data = await res.json()
+    setPosts(data)
+  }
+
+  useEffect(()=>{
+    getPosts()
+  },[])
+
+  const deletePost = async (id:string)=>{
+    await fetch(`http://localhost:5000/posts/${id}`,{
+      method:"DELETE"
+    })
+    getPosts()
+  }
+
+  const likePost = async (id:string)=>{
+    await fetch(`http://localhost:5000/posts/like/${id}`,{
+      method:"PUT"
+    })
+    getPosts()
+  }
 
   return (
-    <div className="min-h-screen p-6 flex justify-center">
-      <div className="w-full max-w-2xl p-6 flex flex-col gap-4">
 
-        {/* Post Heading */}
-        <h1 className="text-3xl font-semibold text-[#261CC1]">{post.title}</h1>
+    <div className="p-10 grid gap-6">
 
-        {/* Post Description */}
-        <p className="text-gray-700 text-base">{post.description}</p>
+      {posts.map((post:any)=>(
+        <div
+        key={post._id}
+        className="border p-5 rounded-xl">
 
-        {/* Action Icons */}
-        <div className="flex items-center gap-6 mt-4">
-          {/* Edit */}
-          <Link href={`/edit-post/${post.id}`} className="flex items-center gap-1 text-blue-600 hover:underline">
-            <FaEdit /> Edit
-          </Link>
+          <h2 className="text-lg font-semibold">
+            {post.title}
+          </h2>
 
-          {/* Delete */}
-          <button className="flex items-center gap-1 text-red-600 hover:underline cursor-pointer">
-            <FaTrash /> Delete
-          </button>
+          <p className="text-gray-600">
+            {post.description}
+          </p>
 
-          {/* Like */}
-          <button
-            className="flex items-center gap-1 transition-colors cursor-pointer"
-            onClick={() => setLiked(!liked)}
-          >
-            <FaHeart className={`text-xl ${liked ? 'text-red-600' : 'text-gray-600'}`} />
-          </button>
+          <p className="text-sm mt-2">
+            {new Date(post.createdAt).toLocaleDateString()}
+          </p>
+
+          <div className="flex gap-4 mt-3">
+
+            <button
+            onClick={()=>likePost(post._id)}>
+              ❤️ {post.likes}
+            </button>
+
+            <button
+            onClick={()=>deletePost(post._id)}>
+              Delete
+            </button>
+
+          </div>
+
         </div>
-      </div>
+      ))}
+
     </div>
-  );
+  )
 }
