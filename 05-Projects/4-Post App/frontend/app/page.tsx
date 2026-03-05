@@ -72,10 +72,10 @@ export default function CreatePost() {
 </div>
 
           {/* button */}
-          <button
-          className="px-6 py-2 border border-[#1A05A2] text-[#1A05A2] bg-white rounded transition hover:bg-[#1A05A2] hover:text-white hover:border-white">
-            Create Post
-          </button>
+         <button
+className="block mx-auto px-8 py-4 border-2 border-[#1A05A2] text-[#1A05A2] bg-white cursor-pointer transition hover:bg-[#1A05A2] hover:text-white hover:border-white">
+  Create Post
+</button>
 
         </form>
 
