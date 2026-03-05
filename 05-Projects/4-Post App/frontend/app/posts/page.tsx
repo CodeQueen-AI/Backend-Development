@@ -45,7 +45,7 @@ export default function PostsPage() {
       </div>
 
       {/* Heading */}
-      <h1 className="text-3xl font-semibold mb-10 text-center text-[#1A05A2]">
+      <h1 className="text-5xl font-semibold mb-10 text-center text-[#1A05A2]">
         All Posts
       </h1>
 
@@ -55,8 +55,7 @@ export default function PostsPage() {
         {posts.map((post: any) => (
           <div
             key={post._id}
-            className="border rounded-xl p-5 flex flex-col justify-between h-full"
-          >
+            className="border p-5 flex flex-col justify-between h-full">
 
             {/* Title */}
             <h2 className="text-lg font-semibold text-center mb-2">
@@ -64,12 +63,12 @@ export default function PostsPage() {
             </h2>
 
             {/* Description */}
-            <p className="text-gray-600 mb-2 text-left">
+            <p className=" mb-2 text-left">
               {post.description}
             </p>
 
             {/* Created At */}
-            <p className="text-sm text-gray-400 mb-3 text-left">
+            <p className="text-sm text-gray-600 mb-3 text-left">
               Created At: {new Date(post.createdAt).toLocaleDateString()}
             </p>
 
@@ -92,7 +91,7 @@ export default function PostsPage() {
                   onClick={() => alert("Edit feature coming soon!")}
                 />
                 <FaTrash
-                  className="cursor-pointer text-gray-600"
+                  className="cursor-pointer text-red-700"
                   size={18}
                   onClick={() => deletePost(post._id)}
                 />
