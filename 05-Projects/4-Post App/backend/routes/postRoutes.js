@@ -1,5 +1,5 @@
 import express from "express";
-import Post from "../Models/post"
+import Post from "../Models/post.js"
 
 const router = express.Router();
 
