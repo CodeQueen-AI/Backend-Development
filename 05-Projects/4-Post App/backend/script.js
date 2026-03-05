@@ -2,7 +2,7 @@ import express from "express";
 import Post from "./Models/post.js"
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 // ===== Middleware =====
 app.use(express.json());
